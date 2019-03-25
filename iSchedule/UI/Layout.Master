@@ -1,0 +1,121 @@
+﻿<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolKit" %>
+
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Layout.master.cs" Inherits="iSchedule.Views.Layout" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <title>SMSDome Contest</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <%--    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">--%>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Bootstrap Core CSS -->
+    <link href='../Content/bootstrap.css' type='text/css' rel='stylesheet'>
+    <link href='../Content/simple-sidebar.css' type='text/css' rel='stylesheet'>
+    <link href='../Content/jquery-ui.css' type='text/css' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:400,700">
+    <link href='../Content/jquery.datetimepicker.css' type='text/css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
+    <!-- Custom CSS -->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link href='../Content/General.css' type='text/css' rel='stylesheet'>
+    <asp:ContentPlaceHolder ID="HeadPlaceHolder" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form runat="server">
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#menu-toggle" id="menu-toggle"><i class="fa fa-bars"></i>&nbsp;SMSDome Contest</a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <%--   <li>
+                            <a href="/Views/OnlinePage">Online Page &nbsp;<i class="fa fa-globe"> </i>
+                            </a>
+                        </li>--%>
+                        <%-- <li runat="server" id="AdminManageSettings">
+                            <a href="/Views/Settings">
+                                <i class="fa fa-cogs"></i>&nbsp;Settings
+                            </a>
+                        </li>--%>
+                        <li runat="server" id="AdminUser">
+                            <a href="/UI/Users.aspx">
+                                <i class="fa fa-pencil"></i>&nbsp;Users
+                            </a>
+                        </li>
+                        <li runat="server" id="UserSettings">
+                            <a href="/UI/Settings.aspx">
+                                <i class="fa fa-database"></i>&nbsp;Settings
+                            </a>
+                        </li>
+                        <li runat="server" id="UserUpload">
+                            <a href="/UI/Upload.aspx">
+                                <i class="fa fa-upload"></i>&nbsp;Upload Entries
+                            </a>
+                        </li>
+                        <li runat="server" id="UserSchedules">
+                            <a href="/UI/Schedules.aspx">
+                                <i class="fa fa-database"></i>&nbsp;Schedules
+                            </a>
+                        </li>                      
+                        <li>
+                            <asp:LinkButton ID="SignOutLink" runat="server" OnClick="SignOut_Click" Text="SignOut" />
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container -->
+        </nav>
+        <div id="wrapper">
+            <div>
+                <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+
+        </div>
+        <!-- /#wrapper -->
+        <!-- BEGIN CORE PLUGINS -->
+        <!--Reference Scripts-->
+        <script type="text/javascript" src="../Scripts/refs/jquery-1.12.4.js"></script>
+        <script type="text/javascript" src="../Scripts/refs/jquery.validate.min.js"></script>
+        <script type="text/javascript" src="../Scripts/refs/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../Scripts/refs/jquery-ui.js"></script>
+        <script type="text/javascript" src="../Scripts/refs/moment.js"></script>
+        <script type="text/javascript" src="../Scripts/refs/bootbox.min.js"></script>
+        <script type="text/javascript" src="../Scripts/refs/jquery.datetimepicker.full.js"></script>
+        <!--End Of Reference Scripts-->
+        <!--Page Related-->
+        <script>
+            $("#menu-toggle").click(function (e) {
+                e.preventDefault();
+                $("#wrapper").toggleClass("toggled");
+            });
+            $(document).ready(function () {
+                jQuery('.datetimepicker').datetimepicker({
+                    format: 'd M Y H:i:s'
+                });
+                jQuery('.timepicker').datetimepicker({ datepicker: false,
+  step: 1,
+  format: 'H:i' });
+            });
+        </script>
+        <asp:ContentPlaceHolder ID="FootHolder" runat="server">
+        </asp:ContentPlaceHolder>
+      
+        <asp:ScriptManager ID="ScriptManager1" runat="server" EnableCdn="true"></asp:ScriptManager>
+    </form>
+</body>
+</html>

@@ -1,0 +1,1 @@
+﻿var app = angular.module('BaseContest', ["ngSanitize", 'ui.bootstrap', 'ui.bootstrap.datetimepicker',  'angularMoment', 'ngBootbox']);
