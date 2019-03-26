@@ -505,7 +505,7 @@ namespace iSchedule.BLL
                         return new FunctionResult_Models(false) { message = "File is invalid! Only CSV Files are accepted!" };
                     }
 
-                    return new FunctionResult_Models(true) { message = "CSV Uploaded!<br/>" + String.Join("<br/>", MessageList)/**/ };
+                    return new FunctionResult_Models(true) { message = "CSV Uploaded!"};
                 }
             }
             catch (Exception ex)
