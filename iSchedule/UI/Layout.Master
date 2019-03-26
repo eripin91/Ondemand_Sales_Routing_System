@@ -70,7 +70,7 @@
                                 <i class="fa fa-database"></i>&nbsp;Schedules
                             </a>
                         </li>                      
-                        <li>
+                        <li runat="server" id="AdminSignout">
                             <asp:LinkButton ID="SignOutLink" runat="server" OnClick="SignOut_Click" Text="SignOut" />
                         </li>
                     </ul>

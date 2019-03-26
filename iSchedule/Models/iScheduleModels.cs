@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace iSchedule.edmx
+namespace iSchedule.Models
 {    
     public class Parameters_Models
     {
@@ -26,6 +26,7 @@ namespace iSchedule.edmx
         public DateTime StartDate;
         public DateTime EndDate;
         public string ValidOnly;
+        public string AppId;
         public int Page;
         public int PageSize;
         public string WinnerGroupName;

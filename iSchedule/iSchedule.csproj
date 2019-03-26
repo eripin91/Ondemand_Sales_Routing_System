@@ -173,12 +173,12 @@
     <Content Include="Content\simple-sidebar.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\style.css" />
-    <Content Include="edmx\BaseDB.Context.tt">
+    <Content Include="Models\BaseDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>BaseDB.edmx</DependentUpon>
       <LastGenOutput>BaseDB.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="edmx\BaseDB.tt">
+    <Content Include="Models\BaseDB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>BaseDB.edmx</DependentUpon>
       <LastGenOutput>BaseDB.cs</LastGenOutput>
@@ -198,11 +198,11 @@
     <Content Include="Scripts\refs\bootstrap.min.js" />
     <Content Include="Scripts\refs\datetime-picker.js" />
     <Content Include="Content\csv_template.csv" />
-    <EntityDeploy Include="edmx\BaseDB.edmx">
+    <EntityDeploy Include="Models\BaseDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>BaseDB.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="edmx\BaseDB.edmx.diagram">
+    <Content Include="Models\BaseDB.edmx.diagram">
       <DependentUpon>BaseDB.edmx</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\smsdome-ischedule-sea-web-prd-uat - Web Deploy.pubxml" />
@@ -224,6 +224,7 @@
     <Content Include="UI\Upload.aspx" />
     <Content Include="UI\Users.aspx" />
     <Content Include="UI\Settings.aspx" />
+    <Content Include="UI\WebForm1.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -245,26 +246,26 @@
     <Compile Include="BLL\Helper\Repository.cs" />
     <Compile Include="BLL\Helper\TextMediaTypeFormatter.cs" />
     <Compile Include="Controllers\RESTController.cs" />
-    <Compile Include="edmx\BaseDB.Context.cs">
+    <Compile Include="Models\BaseDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BaseDB.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="edmx\BaseDB.cs">
+    <Compile Include="Models\BaseDB.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BaseDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="edmx\BaseDB.Designer.cs">
+    <Compile Include="Models\BaseDB.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BaseDB.edmx</DependentUpon>
     </Compile>
-    <Compile Include="edmx\iScheduleModels.cs" />
-    <Compile Include="edmx\Schedules.cs">
+    <Compile Include="Models\iScheduleModels.cs" />
+    <Compile Include="Models\Schedules.cs">
       <DependentUpon>BaseDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="edmx\Settings.cs">
+    <Compile Include="Models\Settings.cs">
       <DependentUpon>BaseDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
@@ -328,6 +329,13 @@
     <Compile Include="UI\Settings.aspx.designer.cs">
       <DependentUpon>Settings.aspx</DependentUpon>
     </Compile>
+    <Compile Include="UI\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -350,6 +358,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DAL\" />
+    <Folder Include="edmx\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

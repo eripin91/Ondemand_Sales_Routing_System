@@ -159,7 +159,7 @@
                                 <asp:BoundField DataField="IsSent" HeaderText="Is Sent" />
                                 <asp:TemplateField HeaderText="Sent On">
                                     <ItemTemplate>
-                                        <asp:Label runat="server" ID="SentOn" Text='<%# Eval("SentOn")==DBNull.Value?"": (Convert.ToDateTime(Eval("SentOn"))).ToString("dd MMM yyyy HH:mm:ss") %>'></asp:Label>
+                                        <asp:Label runat="server" ID="SentOn" Text='<%# Eval("SentOn")==DBNull.Value ?"": (Convert.ToDateTime(Eval("SentOn"))).ToString("dd MMM yyyy HH:mm:ss") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 

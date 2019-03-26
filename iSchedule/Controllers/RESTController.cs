@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using iSchedule.edmx;
+using iSchedule.Models;
 using iSchedule.BLL;
 using System.Text.RegularExpressions;
 using Microsoft.AspNet.Identity;
@@ -106,7 +106,7 @@ namespace iSchedule.Controllers
                 ////Determine how many winners to pick?
 
                 //var NoOfWinners = body.Get("noofrecords") == null ? 0 : Convert.ToInt32(body["noofrecords"].ToString());
-                DateTime localNow = (createdon == "") ? DateTime.UtcNow.AddHours(Repo.AddLocalTimeZone) : Convert.ToDateTime(createdon).AddHours(Repo.AddLocalTimeZone);
+                DateTime localNow = (createdon == "") ? DateTime.UtcNow : Convert.ToDateTime(createdon);
 
                 //get all setting where local now == set time
                 List<Settings> runningSettings = settings_BLL.getSettingsByDateTime(localNow);
@@ -119,13 +119,16 @@ namespace iSchedule.Controllers
                     //foreach schedules , send SMS and set isSent = 0, SentOn = localNow
                     foreach (var it in upcomingSchedules)
                     {
-                        GeneralFunctions.SendSms(Convert.ToInt32(item.AppId), new Guid(item.AppSecret), it.MobileNo,
-                            item.MessageTemplate);
-                        //update isSent and sentOn
-                        it.IsSent = true;
-                        it.SentOn = Repo.FromLocalToUTC(DateTime.Now);
+                        if (it.EventDate.AddHours(Repo.AddLocalTimeZone).Date == DateTime.UtcNow.Date)
+                        {
+                            GeneralFunctions.SendSms(Convert.ToInt32(item.AppId), new Guid(item.AppSecret), it.MobileNo,
+                                item.MessageTemplate);
+                            //update isSent and sentOn
+                            it.IsSent = true;
+                            it.SentOn = localNow;
 
-                        schedules_BLL.update(it);
+                            schedules_BLL.update(it);
+                        }
                     }
 
                 }

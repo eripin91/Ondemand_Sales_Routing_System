@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Script.Serialization;
-using iSchedule.edmx;
+using iSchedule.Models;
 using System.Globalization;
 using System.Data;
 using iSchedule.BLL;
@@ -24,22 +24,36 @@ namespace iSchedule.Views
             if (!Page.IsPostBack)
             {
                 try
-                {
-                    byte[] et = repo.EncryptStringToBytes_Aes("2700|800f7db9-67a3-4f35-af2d-f14badb62311|1893456000", repo.DecryptAESKey, repo.DecryptAESinitVector);
+                 {
+                    string appId = string.Empty;
+                    string appSecret = string.Empty;
+                    int expiredTick = 0;
 
-                    string urlEncode = HttpUtility.UrlEncode(Request.QueryString["token"]);
-                    string tk = HttpUtility.UrlEncode(Convert.ToBase64String(et.ToArray()));
+                    if (string.IsNullOrEmpty(repo.Cookies_Get("uAppId")))
+                    {
+                        byte[] et = repo.EncryptStringToBytes_Aes("2700|800f7db9-67a3-4f35-af2d-f14badb62311|1893456000", repo.DecryptAESKey, repo.DecryptAESinitVector);
 
-                    byte[] EncryptedToken = Convert.FromBase64String(Request.QueryString["token"]);                    
+                        string urlEncode = HttpUtility.UrlEncode(Request.QueryString["token"]);
+                        string tk = HttpUtility.UrlEncode(Convert.ToBase64String(et.ToArray()));
 
-                    string DecryptedToken = repo.DecryptStringFromBytes_Aes(EncryptedToken, repo.DecryptAESKey, repo.DecryptAESinitVector);
+                        byte[] EncryptedToken = Convert.FromBase64String(Request.QueryString["token"]);
 
-                    string appId = DecryptedToken.Split('|')[0];
-                    string appSecret = DecryptedToken.Split('|')[1];
-                    int expiredTick = Convert.ToInt32(DecryptedToken.Split('|')[2]);
+                        string DecryptedToken = repo.DecryptStringFromBytes_Aes(EncryptedToken, repo.DecryptAESKey, repo.DecryptAESinitVector);
 
-                    repo.Cookies_Set("uAppId", appId, DateTime.Now.AddDays(1));
-                    repo.Cookies_Set("uAppSecret", appSecret, DateTime.Now.AddDays(1));
+                        appId = DecryptedToken.Split('|')[0];
+                        appSecret = DecryptedToken.Split('|')[1];
+                        expiredTick = Convert.ToInt32(DecryptedToken.Split('|')[2]);
+
+                        repo.Cookies_Set("uAppId", appId, DateTime.Now.AddDays(1));
+                        repo.Cookies_Set("uAppSecret", appSecret, DateTime.Now.AddDays(1));
+                        repo.Cookies_Set("uExpiredTick", expiredTick.ToString(), DateTime.Now.AddDays(1));
+                    }
+                    else
+                    {
+                        appId = repo.Cookies_Get("uAppId");
+                        appSecret = repo.Cookies_Get("uAppSecret");
+                        expiredTick = Convert.ToInt32(repo.Cookies_Get("uExpiredTick"));
+                    }
                     //check tick is not expired
                     Int32 unixTimestamp = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
 
@@ -66,7 +80,9 @@ namespace iSchedule.Views
                     }
                     else
                     {
-                        sendTime.Text = setting.Scheduletime.ToString();
+                        
+                        TimeSpan addTimeZone = TimeSpan.FromHours(repo.AddLocalTimeZone);
+                        if (setting.Scheduletime != null) sendTime.Text =  ((TimeSpan)setting.Scheduletime).Add(addTimeZone).ToString();
                         areaMsgTemplate.Text = setting.MessageTemplate;
                     }
                 }

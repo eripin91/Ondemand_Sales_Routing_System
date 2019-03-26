@@ -7,99 +7,72 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace iSchedule.Views {
+namespace iSchedule.UI {
     
     
-    public partial class Layout {
+    public partial class WebForm1 {
         
         /// <summary>
-        /// HeadPlaceHolder control.
+        /// form1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder HeadPlaceHolder;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// AdminUser control.
+        /// lblKey control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AdminUser;
+        protected global::System.Web.UI.WebControls.Label lblKey;
         
         /// <summary>
-        /// UserSettings control.
+        /// lblIV control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UserSettings;
+        protected global::System.Web.UI.WebControls.Label lblIV;
         
         /// <summary>
-        /// UserUpload control.
+        /// lblDecrypted control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UserUpload;
+        protected global::System.Web.UI.WebControls.Label lblDecrypted;
         
         /// <summary>
-        /// UserSchedules control.
+        /// txtEncrypted control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UserSchedules;
+        protected global::System.Web.UI.WebControls.TextBox txtEncrypted;
         
         /// <summary>
-        /// AdminSignout control.
+        /// Button1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AdminSignout;
+        protected global::System.Web.UI.WebControls.Button Button1;
         
         /// <summary>
-        /// SignOutLink control.
+        /// lblEncryptString control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton SignOutLink;
-        
-        /// <summary>
-        /// MainContent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
-        
-        /// <summary>
-        /// FootHolder control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder FootHolder;
-        
-        /// <summary>
-        /// ScriptManager1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
+        protected global::System.Web.UI.WebControls.Label lblEncryptString;
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
-using iSchedule.edmx;
+using iSchedule.Models;
 using System.IO;
 using System.Data.Entity.Validation;
 
@@ -114,10 +114,14 @@ namespace iSchedule.BLL
             {
                 using (var db = new BaseEntities())
                 {
+                    Schedules_BLL schedules_BLL = new Schedules_BLL();
                     Settings setting = getSettingsBySettingsId(SettingsId);
-                    
-                    db.Entry(setting).State = System.Data.Entity.EntityState.Deleted;
 
+                    IQueryable<Schedules> schedulesIqueryable = db.Schedules.Where(s => s.AppId == setting.AppId);
+                    db.Schedules.RemoveRange(schedulesIqueryable);
+
+                    db.Entry(setting).State = System.Data.Entity.EntityState.Deleted;
+                    
                     if (db.SaveChanges() > 0)
                         return setting;
                     else return null;

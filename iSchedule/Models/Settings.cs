@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace iSchedule.edmx
+namespace iSchedule.Models
 {
     using System;
     using System.Collections.Generic;

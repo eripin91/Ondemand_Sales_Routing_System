@@ -15,7 +15,7 @@ using System.Reflection;
 using System.Drawing;
 using ImageResizer;
 using System.Text.RegularExpressions;
-using iSchedule.edmx;
+using iSchedule.Models;
 using System.Security.Cryptography;
 
 namespace iSchedule.BLL
@@ -259,7 +259,7 @@ namespace iSchedule.BLL
             var dt = new DataTable();
             foreach (KeyValuePair<string, object> kpv in Entries.FirstOrDefault())
             {
-                if (kpv.Key == "DateEntry" || kpv.Key == "DateWon")
+                if (kpv.Key == "DateEntry" || kpv.Key == "DateWon" || kpv.Key == "CreatedOn" || kpv.Key == "EventDate" || kpv.Key == "SentOn")
                 {
                     dt.Columns.Add(kpv.Key, typeof(DateTime));
                 }
@@ -279,9 +279,12 @@ namespace iSchedule.BLL
                 {
                     if (column == "DateEntry" || column == "DateWon" || column=="CreatedOn" || column=="EventDate" || column=="SentOn")
                     {
-                        var LDate = Convert.ToDateTime(dictionary[column]).AddHours(AddLocalTimeZone);
+                        if (dictionary[column] != null)
+                        {
+                            var LDate = Convert.ToDateTime(dictionary[column]).AddHours(AddLocalTimeZone);
 
-                        dataRow[column] = LDate;//.ToString("dd-MM-yyyy HH:mm:ss");
+                            dataRow[column] = LDate;//.ToString("dd-MM-yyyy HH:mm:ss");
+                        }
 
                     }
                     else

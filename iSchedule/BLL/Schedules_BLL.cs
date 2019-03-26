@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
-using iSchedule.edmx;
+using iSchedule.Models;
 using System.IO;
 using System.Data.Entity.Validation;
 
@@ -18,11 +18,11 @@ namespace iSchedule.BLL
                 return db.Schedules.FirstOrDefault(s => s.SchedulesId == schedulesId);
             }
         }
-        public Schedules getScheduleByAppId(string appId)
+        public List<Schedules> getSchedulesByAppId(string appId)
         {
             using (var db = new BaseEntities())
             {
-                return db.Schedules.FirstOrDefault(s=>s.AppId==appId);
+                return db.Schedules.Where(s=>s.AppId==appId).ToList();
             }
         }
 

@@ -17,19 +17,17 @@ namespace iSchedule.Views
         Repository repo = Repository.Instance;
         //Becoz u donno if some pages will need to have a different PageSize
         static readonly int PageSize = 50;
+        string appId = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-            Response.Buffer = true;
-            Response.CacheControl = "no-cache";
-            Response.AddHeader("Pragma", "no-cache");
-            Response.AppendHeader("pragma", "no-cache");
-            Response.Expires = -1441;
-            Response.Cache.SetExpires(DateTime.Now.AddSeconds(-1));
-            Response.Cache.SetNoStore();
-
             if (!Page.IsPostBack)
             {
+                
+            }
+            appId = repo.Cookies_Get("uAppId");
+            if (string.IsNullOrEmpty(appId))
+            {
+                Response.Redirect("~/UI/ErrorPage.aspx");
             }
         }
 

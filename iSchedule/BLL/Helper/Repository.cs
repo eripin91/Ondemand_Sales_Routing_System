@@ -19,7 +19,7 @@ using Newtonsoft.Json.Linq;
 using Microsoft.VisualBasic.FileIO;
 using System.Threading;
 using System.Data.Entity.Validation;
-using iSchedule.edmx;
+using iSchedule.Models;
 using System.Globalization;
 
 namespace iSchedule.BLL
@@ -298,7 +298,7 @@ namespace iSchedule.BLL
                         //Save Schedule after passing all checks
                         FunctRes.Schedule = SaveSchedule(FunctRes.Schedule, true);
 
-                        //FunctRes.message = ValidMessageOnline; // "Successfully saved with ID : " + FunctRes.Schedule.AppId.ToString();
+                        FunctRes.message = ValidMessageOnline.Replace("{mobileNo}", FunctRes.Schedule.MobileNo); // "Successfully saved with ID : " + FunctRes.Schedule.AppId.ToString();
 
                         return FunctRes;
                     }
@@ -474,33 +474,38 @@ namespace iSchedule.BLL
                             }
                         }
 
+                        string appId = Cookies_Get("uAppId");
 
-                        for (var i = 0; i < CsvData.Count; i++)
+                        if (!string.IsNullOrEmpty(appId))
                         {
-                            //string msg = CsvData[i].EventDate.ToString();
-                            
-                            //if (!string.IsNullOrEmpty(CsvData[i].Custom1)) msg += " " + CsvData[i].Custom1;
-                            //if (!string.IsNullOrEmpty(CsvData[i].Custom2)) msg += " " + CsvData[i].Custom2;
-                            //if (!string.IsNullOrEmpty(CsvData[i].Custom3)) msg += " " + CsvData[i].Custom3;
-
-                            MessageList.Add(InsertSchedule(new Schedules()
+                            //purge existing
+                            PurgeEntriesByAppId(appId);
+                            for (var i = 0; i < CsvData.Count; i++)
                             {
-                                CreatedOn = DateTime.Parse(CsvData[i].CreatedOn.ToString("yyyy-MM-dd HH:mm:ss")).ToUniversalTime(),
-                                EventDate = CsvData[i].EventDate,
-                                Custom1 = CsvData[i].Custom1 ?? string.Empty,
-                                Custom2 = CsvData[i].Custom2??string.Empty,
-                                Custom3 = CsvData[i].Custom3??string.Empty,
-                                MobileNo = CsvData[i].MobileNo??string.Empty
-                            }).message);
-                        }
+                                //string msg = CsvData[i].EventDate.ToString();
 
+                                //if (!string.IsNullOrEmpty(CsvData[i].Custom1)) msg += " " + CsvData[i].Custom1;
+                                //if (!string.IsNullOrEmpty(CsvData[i].Custom2)) msg += " " + CsvData[i].Custom2;
+                                //if (!string.IsNullOrEmpty(CsvData[i].Custom3)) msg += " " + CsvData[i].Custom3;
+
+                                MessageList.Add(InsertSchedule(new Schedules()
+                                {
+                                    CreatedOn = DateTime.Parse(CsvData[i].CreatedOn.ToString("yyyy-MM-dd HH:mm:ss")).ToUniversalTime(),
+                                    EventDate = CsvData[i].EventDate,
+                                    Custom1 = CsvData[i].Custom1 ?? string.Empty,
+                                    Custom2 = CsvData[i].Custom2 ?? string.Empty,
+                                    Custom3 = CsvData[i].Custom3 ?? string.Empty,
+                                    MobileNo = CsvData[i].MobileNo ?? string.Empty
+                                }).message);
+                            }
+                        }
                     }
                     else
                     {
                         return new FunctionResult_Models(false) { message = "File is invalid! Only CSV Files are accepted!" };
                     }
 
-                    return new FunctionResult_Models(true) { message = "CSV Uploaded!" + String.Join("<br/>", MessageList)/**/ };
+                    return new FunctionResult_Models(true) { message = "CSV Uploaded!<br/>" + String.Join("<br/>", MessageList)/**/ };
                 }
             }
             catch (Exception ex)
@@ -828,7 +833,7 @@ namespace iSchedule.BLL
                 var FunctRes = new FunctionResult_Models(true);
 
 
-                var Query = db.Schedules.Where(s => s.CreatedOn >= Options.StartDate && s.CreatedOn <= Options.EndDate);
+                var Query = db.Schedules.Where(s => s.CreatedOn >= Options.StartDate && s.CreatedOn <= Options.EndDate & s.AppId == Options.AppId);
 
 
                 //Filter Validity
@@ -872,7 +877,7 @@ namespace iSchedule.BLL
             {
                 var FunctRes = new FunctionResult_Models(true);
 
-                var Query = db.Schedules.Where(s => s.CreatedOn >= Options.StartDate && s.CreatedOn <= Options.EndDate);
+                var Query = db.Schedules.Where(s => s.CreatedOn >= Options.StartDate && s.CreatedOn <= Options.EndDate & s.AppId == Options.AppId);
 
                 //Filter Validity
 
@@ -922,6 +927,18 @@ namespace iSchedule.BLL
 
         }
 
+        public FunctionResult_Models PurgeEntriesByAppId(string appId)
+        {
+            using (var db = new BaseEntities())
+            {
+                IQueryable<Schedules> schedules = db.Schedules.Where(s => s.AppId == appId);
+                db.Schedules.RemoveRange(schedules);
+                db.SaveChanges();
+
+                return new FunctionResult_Models(true) { message = "Successfully Purged!" };
+            }
+
+        }
 
         public FunctionResult_Models PurgeSelectedEntries(List<int> SchedulesId)
         {

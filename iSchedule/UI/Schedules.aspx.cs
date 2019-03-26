@@ -8,7 +8,7 @@ using System.Web.Script.Serialization;
 using System.Globalization;
 using System.Data;
 using iSchedule.BLL;
-using iSchedule.edmx;
+using iSchedule.Models;
 using System.Threading;
 
 namespace iSchedule.Views
@@ -18,17 +18,9 @@ namespace iSchedule.Views
         Repository repo = Repository.Instance;
         //Becoz u donno if some pages will need to have a different PageSize
         static readonly int PageSize = 50;
+        string appId = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-            Response.Buffer = true;
-            Response.CacheControl = "no-cache";
-            Response.AddHeader("Pragma", "no-cache");
-            Response.AppendHeader("pragma", "no-cache");
-            Response.Expires = -1441;
-            Response.Cache.SetExpires(DateTime.Now.AddSeconds(-1));
-            Response.Cache.SetNoStore();
-
             if (!Page.IsPostBack)
             {
                 PurgeDiv.Visible = false;
@@ -39,7 +31,13 @@ namespace iSchedule.Views
 
                 startDate.Text = repo.FromUTCToLocal(repo.StartDate).ToString(repo.DateTimeFormat, CultureInfo.InvariantCulture);
                 endDate.Text = repo.FromUTCToLocal(repo.EndDate).ToString(repo.DateTimeFormat, CultureInfo.InvariantCulture);
+                
+            }
+            appId = repo.Cookies_Get("uAppId");
 
+            if (string.IsNullOrEmpty(appId))
+            {
+                Response.Redirect("~/UI/ErrorPage.aspx");
             }
         }
 
@@ -134,6 +132,7 @@ namespace iSchedule.Views
                 Page = Convert.ToInt32(CurrentPage.Text),
                 PageSize = PageSize,
                 UploadStatus = cbUploadStatus.Checked,
+                AppId = appId
             };
 
             var Result = repo.GetEntries(Options);
@@ -243,6 +242,7 @@ namespace iSchedule.Views
                 EndDate = EndDate.AddHours(repo.SubtractLocalTimeZone),
                 ValidOnly = ddlValidity.SelectedValue,
                 UploadStatus = cbUploadStatus.Checked,
+                AppId = appId
             };
 
             var Result = repo.GetEntriesCSV(Options);

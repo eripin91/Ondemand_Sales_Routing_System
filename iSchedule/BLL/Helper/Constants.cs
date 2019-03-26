@@ -47,6 +47,8 @@ namespace iSchedule.BLL
         
         public readonly string ValidationRegexMobileNo = @System.Configuration.ConfigurationManager.AppSettings["ValidationRegexMobileNo"];
         public readonly string ValidationRegexMultipleWords = @System.Configuration.ConfigurationManager.AppSettings["ValidationRegexMultipleWords"];
+
+        public readonly string ValidMessageOnline = @System.Configuration.ConfigurationManager.AppSettings["ValidMessageOnline"];
         //    <!--Login Information -->
 
         public readonly string ContestUser = @System.Configuration.ConfigurationManager.AppSettings["ContestUser"];
@@ -57,8 +59,8 @@ namespace iSchedule.BLL
         public readonly string IdentityPW = @System.Configuration.ConfigurationManager.AppSettings["IdentityPW"];
 
 
-        public readonly byte[] DecryptAESKey = System.Text.Encoding.UTF8.GetBytes(@System.Configuration.ConfigurationManager.AppSettings["DecryptAESKey"]);
-        public readonly byte[] DecryptAESinitVector = System.Text.Encoding.UTF8.GetBytes(@System.Configuration.ConfigurationManager.AppSettings["DecryptAESinitVector"]);
+        public readonly byte[] DecryptAESKey = Convert.FromBase64String(@System.Configuration.ConfigurationManager.AppSettings["DecryptAESKey"]);
+        public readonly byte[] DecryptAESinitVector = Convert.FromBase64String(@System.Configuration.ConfigurationManager.AppSettings["DecryptAESinitVector"]);
         //     <!--Azure Storage Info-->
 
         //public readonly string AzureStorageLink = @System.Configuration.ConfigurationManager.AppSettings["AzureStorageLink"].ToString(); // @Properties.Settings.Default.AzureStorageLink.ToString(); 

@@ -107,7 +107,7 @@ namespace iSchedule.Views
                     var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
                     var userIdentity = userManager.CreateIdentity(createuser, DefaultAuthenticationTypes.ApplicationCookie);
                     authenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = false }, userIdentity);
-                    Response.Redirect("Schedules.aspx");
+                    Response.Redirect("~/UI/Users.aspx");
                     //return dictuser["PassWord"].ToString().ToUpper() == SArepo.ContestAdminPW ? "Server has been setup, User : " + SArepo.IdentityAdmin + " has successfully Logged In"
                     //: "Server has been setup, User : " + SArepo.ContestUser + " has successfully Logged In";
                 }
@@ -133,7 +133,7 @@ namespace iSchedule.Views
                     var userIdentity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
                     authenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = false }, userIdentity);
 
-                    Response.Redirect("Schedules.aspx");
+                    Response.Redirect("~/UI/Users.aspx");
 
                     //Response.StatusCode = 200;
                     //return dictuser["PassWord"].ToString().ToUpper() == SArepo.ContestAdminPW ? "User : " + SArepo.IdentityAdmin + " has successfully Logged In"

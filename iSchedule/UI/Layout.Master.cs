@@ -15,14 +15,14 @@ namespace iSchedule.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-            Response.Buffer = true;
-            Response.CacheControl = "no-cache";
-            Response.AddHeader("Pragma", "no-cache");
-            Response.AppendHeader("pragma", "no-cache");
-            Response.Expires = -1441;
-            Response.Cache.SetExpires(DateTime.Now.AddSeconds(-1));
-            Response.Cache.SetNoStore();
+            //Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            //Response.Buffer = true;
+            //Response.CacheControl = "no-cache";
+            //Response.AddHeader("Pragma", "no-cache");
+            //Response.AppendHeader("pragma", "no-cache");
+            //Response.Expires = -1441;
+            //Response.Cache.SetExpires(DateTime.Now.AddSeconds(-1));
+            //Response.Cache.SetNoStore();
 
             if (!Page.IsPostBack)
             {
@@ -32,7 +32,10 @@ namespace iSchedule.Views
                 //}
 
                 AdminUser.Visible = false;
-                
+                AdminSignout.Visible = false;
+                UserSettings.Visible = false;
+                UserUpload.Visible = false;
+                UserSchedules.Visible = false;
                 //AdminManageSettings.Visible = false;
 
                 if (HttpContext.Current.User.IsInRole("Superusers"))
@@ -41,8 +44,15 @@ namespace iSchedule.Views
                     UserSettings.Visible = false;
                     UserUpload.Visible = false;
                     UserSchedules.Visible = false;
+                    AdminSignout.Visible = true;
 
                     // AdminManageSettings.Visible = true;
+                }
+                else
+                {
+                    UserSettings.Visible = true;
+                    UserUpload.Visible = true;
+                    UserSchedules.Visible = true;
                 }
             }
         }
