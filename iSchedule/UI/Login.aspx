@@ -27,7 +27,7 @@
                 <p>
                     &nbsp;
                 </p>
-                <h3 class="form-signin-heading">SMSDome Contest Portal</h3>
+                <h3 class="form-signin-heading">SMSDome iSchedule Portal</h3>
 
                 <div class="form-group">
                     <asp:TextBox runat="server" ID="UserName" CssClass="form-control"></asp:TextBox>
@@ -40,7 +40,7 @@
 
                 <p>
                     <small><strong>Copyright</strong> &copy;
-                    <asp:Label runat="server" ID="lblDT"></asp:Label><strong>SMSDOME Contest v&nbsp;<span runat="server" id="Version"></span></strong></small>
+                    <asp:Label runat="server" ID="lblDT"></asp:Label><strong>SMSDOME iSchedule v&nbsp;<span runat="server" id="Version"></span></strong></small>
                 </p>
 
 
