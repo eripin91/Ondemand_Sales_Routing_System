@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-3">
                     <h1>Upload Entries</h1>
-                    <a href="~\Content\csv_template">Download Template</a><br /><br />
+                    <a href="..\Content\csv_template.csv">Download Template</a><br /><br />
                     File format: CSV<br />
                     Columns: MobileNo | EventDate | Custom1 | Custom2 | Custom3 <br /><br />
                     MobileNo must have country code<br />
