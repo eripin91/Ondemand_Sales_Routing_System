@@ -433,7 +433,7 @@ namespace iSchedule.BLL
                                 DateTime s;
                                 if (!DateTime.TryParseExact(fields[EventDateIndex], "dd MMM yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out s))
                                 {
-                                    s = DateTime.MinValue;
+                                    s = FromUTCToLocal(DateTime.MinValue);
                                 }
 
                                 CsvData.Add(new Schedules()
