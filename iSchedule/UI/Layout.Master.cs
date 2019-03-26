@@ -8,11 +8,13 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using AjaxControlToolkit;
+using iSchedule.BLL;
 
 namespace iSchedule.Views
 {
     public partial class Layout : System.Web.UI.MasterPage
     {
+        Repository repo = Repository.Instance;
         protected void Page_Load(object sender, EventArgs e)
         {
             //Response.Cache.SetCacheability(HttpCacheability.NoCache);
@@ -32,10 +34,10 @@ namespace iSchedule.Views
                 //}
 
                 AdminUser.Visible = false;
-                AdminSignout.Visible = false;
                 UserSettings.Visible = false;
                 UserUpload.Visible = false;
                 UserSchedules.Visible = false;
+                lblAppId.Text = repo.Cookies_Get("uAppId");
                 //AdminManageSettings.Visible = false;
 
                 if (HttpContext.Current.User.IsInRole("Superusers"))
@@ -44,7 +46,6 @@ namespace iSchedule.Views
                     UserSettings.Visible = false;
                     UserUpload.Visible = false;
                     UserSchedules.Visible = false;
-                    AdminSignout.Visible = true;
 
                     // AdminManageSettings.Visible = true;
                 }
@@ -61,6 +62,10 @@ namespace iSchedule.Views
         {
             var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
             authenticationManager.SignOut();
+            Response.Cookies["uAppId"].Expires = DateTime.Now.AddDays(-1);
+            Response.Cookies["uAppSecret"].Expires = DateTime.Now.AddDays(-1);
+            Response.Cookies["uExpiredTick"].Expires = DateTime.Now.AddDays(-1);
+
             Response.Redirect("~/UI/Login.aspx");
         }
     }

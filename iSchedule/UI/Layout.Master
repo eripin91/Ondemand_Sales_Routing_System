@@ -50,6 +50,11 @@
                                 <i class="fa fa-cogs"></i>&nbsp;Settings
                             </a>
                         </li>--%>
+                        
+                        <li>
+                            <a>
+                        AppID <asp:Label runat="server" ID="lblAppId"></asp:Label></a>
+                        </li>
                         <li runat="server" id="AdminUser">
                             <a href="/UI/Users.aspx">
                                 <i class="fa fa-pencil"></i>&nbsp;Users
@@ -70,9 +75,10 @@
                                 <i class="fa fa-database"></i>&nbsp;Entries
                             </a>
                         </li>                      
-                        <li runat="server" id="AdminSignout">
+                        <li>
                             <asp:LinkButton ID="SignOutLink" runat="server" OnClick="SignOut_Click" Text="SignOut" />
                         </li>
+                        
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
