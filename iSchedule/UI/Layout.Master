@@ -52,7 +52,7 @@
                         </li>--%>
                         
                         <li>
-                            <a>
+                            <a style="color:#999999">
                         AppID <asp:Label runat="server" ID="lblAppId"></asp:Label></a>
                         </li>
                         <li runat="server" id="AdminUser">
