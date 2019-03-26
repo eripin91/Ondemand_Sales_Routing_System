@@ -224,7 +224,6 @@
     <Content Include="UI\Upload.aspx" />
     <Content Include="UI\Users.aspx" />
     <Content Include="UI\Settings.aspx" />
-    <Content Include="UI\WebForm1.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -328,13 +327,6 @@
     </Compile>
     <Compile Include="UI\Settings.aspx.designer.cs">
       <DependentUpon>Settings.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UI\WebForm1.aspx.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UI\WebForm1.aspx.designer.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

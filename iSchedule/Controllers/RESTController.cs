@@ -122,7 +122,7 @@ namespace iSchedule.Controllers
                         if (it.EventDate.AddHours(Repo.AddLocalTimeZone).Date == DateTime.UtcNow.Date)
                         {
                             GeneralFunctions.SendSms(Convert.ToInt32(item.AppId), new Guid(item.AppSecret), it.MobileNo,
-                                item.MessageTemplate);
+                                item.MessageTemplate.Replace("{custom1}",it.Custom1).Replace("{custom2}", it.Custom2).Replace("{custom3}", it.Custom3));
                             //update isSent and sentOn
                             it.IsSent = true;
                             it.SentOn = localNow;
