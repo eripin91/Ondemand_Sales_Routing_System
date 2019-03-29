@@ -11,6 +11,19 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-3">
                     <h1>Upload Entries</h1>
+                    <br />
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <asp:FileUpload ID="UploadF" runat="server"/>      
+                        </div>
+                        <div class="col-lg-8">
+                            <asp:Button runat="server" ID="Filter"
+                                CssClass="btn btn-primary" Text="Submit" OnClick="Submit_Click" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <h5 style="font-weight: bold" runat="server" id="FileSpecs" visible="false"></h5>
+                    </div>
                     <a href="..\Content\csv_template.csv">Download Template</a><br /><br />
                     File format: CSV<br />
                     Columns: MobileNo | EventDate | Custom1 | Custom2 | Custom3 <br /><br />
@@ -18,14 +31,7 @@
                     EventDate must be in DD MMM YYYY format i.e 05 May 2019<br />
                     Custom1,Custom2,Custom3 are optional columns<br /><br />
                     IMPORTANT: Current schedules will be purged and replaced<br /><br />
-                    <asp:FileUpload ID="UploadF" runat="server" />
-                    <h5 style="font-weight: bold" runat="server" id="FileSpecs" visible="false"></h5>
-                    <div class="row">
-                        <div class="col-lg-offset-4 col-lg-2">
-                            <asp:Button runat="server" ID="Filter"
-                                CssClass="btn btn-primary" Text="Submit" OnClick="Submit_Click" />
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>

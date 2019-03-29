@@ -22,7 +22,7 @@ namespace iSchedule.Views
             {
                 if (User.Identity.IsAuthenticated)
                 {
-                    Response.Redirect("Schedules.aspx");
+                    Response.Redirect("Users.aspx");
                 }
                 else
                 {

@@ -27,7 +27,7 @@ namespace iSchedule.Views
                  {
                     string appId = string.Empty;
                     string appSecret = string.Empty;
-                    int expiredTick = 0;
+                    DateTime expiredDT;
 
                     if (string.IsNullOrEmpty(repo.Cookies_Get("uAppId")))
                     {
@@ -42,22 +42,27 @@ namespace iSchedule.Views
 
                         appId = DecryptedToken.Split('|')[0];
                         appSecret = DecryptedToken.Split('|')[1];
-                        expiredTick = Convert.ToInt32(DecryptedToken.Split('|')[2]);
+                        DateTime.TryParse(DecryptedToken.Split('|')[2], out expiredDT);
 
                         repo.Cookies_Set("uAppId", appId, DateTime.Now.AddDays(1));
                         repo.Cookies_Set("uAppSecret", appSecret, DateTime.Now.AddDays(1));
-                        repo.Cookies_Set("uExpiredTick", expiredTick.ToString(), DateTime.Now.AddDays(1));
+                        repo.Cookies_Set("uExpiredTick", expiredDT.ToString(), DateTime.Now.AddDays(1));
                     }
                     else
                     {
                         appId = repo.Cookies_Get("uAppId");
                         appSecret = repo.Cookies_Get("uAppSecret");
-                        expiredTick = Convert.ToInt32(repo.Cookies_Get("uExpiredTick"));
+                        DateTime.TryParse(repo.Cookies_Get("uExpiredTick"), out expiredDT); 
                     }
                     //check tick is not expired
-                    Int32 unixTimestamp = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+                    //Int32 unixTimestamp = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+                    //long tickTimeStamp = DateTime.UtcNow.Ticks;
 
-                    if (expiredTick < unixTimestamp) Response.Redirect("~/UI/ErrorPage.aspx");
+                    DateTime currentDT;
+                    DateTime.TryParse(DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss.fffzzz"),out currentDT);
+
+                    //if (expiredTick < tickTimeStamp) Response.Redirect("~/UI/ErrorPage.aspx",false);
+                    if(DateTime.Compare(expiredDT, currentDT)<0) Response.Redirect("~/UI/ErrorPage.aspx", false);
 
                     Settings setting = settingsBLL.getSettingsByAppId(appId);
                     if (setting == null)
@@ -88,7 +93,7 @@ namespace iSchedule.Views
                 }
                 catch (Exception ex)
                 {
-                    Response.Redirect("~/UI/ErrorPage.aspx");
+                    Response.Redirect("~/UI/ErrorPage.aspx",false);
                 }
             }
         }

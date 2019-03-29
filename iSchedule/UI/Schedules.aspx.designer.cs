@@ -13,67 +13,13 @@ namespace iSchedule.Views {
     public partial class Entries {
         
         /// <summary>
-        /// startDate control.
+        /// radEvents control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox startDate;
-        
-        /// <summary>
-        /// endDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox endDate;
-        
-        /// <summary>
-        /// ddlValidity control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlValidity;
-        
-        /// <summary>
-        /// ddlIsSent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlIsSent;
-        
-        /// <summary>
-        /// cbUploadStatus control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbUploadStatus;
-        
-        /// <summary>
-        /// Filter control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Filter;
-        
-        /// <summary>
-        /// PurgeSel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PurgeSel;
+        protected global::System.Web.UI.WebControls.RadioButtonList radEvents;
         
         /// <summary>
         /// PurgeSelec control.
@@ -85,15 +31,6 @@ namespace iSchedule.Views {
         protected global::System.Web.UI.WebControls.Button PurgeSelec;
         
         /// <summary>
-        /// ExportDiv control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ExportDiv;
-        
-        /// <summary>
         /// ExportToCSV control.
         /// </summary>
         /// <remarks>
@@ -101,6 +38,24 @@ namespace iSchedule.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button ExportToCSV;
+        
+        /// <summary>
+        /// PurgeSel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PurgeSel;
+        
+        /// <summary>
+        /// ExportDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ExportDiv;
         
         /// <summary>
         /// PurgeDiv control.
@@ -119,6 +74,24 @@ namespace iSchedule.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Purge;
+        
+        /// <summary>
+        /// LoadedDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl LoadedDiv;
+        
+        /// <summary>
+        /// EntriesGV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView EntriesGV;
         
         /// <summary>
         /// PagingDiv control.
@@ -200,24 +173,6 @@ namespace iSchedule.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblTotal;
-        
-        /// <summary>
-        /// LoadedDiv control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl LoadedDiv;
-        
-        /// <summary>
-        /// EntriesGV control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView EntriesGV;
         
         /// <summary>
         /// lblModal control.

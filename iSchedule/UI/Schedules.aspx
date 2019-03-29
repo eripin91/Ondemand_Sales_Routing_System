@@ -11,73 +11,33 @@
                 <div class="col-lg-8 col-lg-offset-3">
                     <h1>View Entries</h1>
                     <p>Displays all entries</p>
+                    <br />
                     <div class="row">
-                        <div class="col-lg-offset-2 col-lg-2">
-                            <label>Start Date</label>
+                        <div class="col-lg-8">
+                            <asp:RadioButtonList runat="server" ID="radEvents" RepeatDirection="Horizontal" CssClass="marginRadio" AutoPostBack="true" OnSelectedIndexChanged="radEvents_SelectedIndexChanged">
+                                <asp:ListItem Text="Show Past Events" Value="True" Selected="True"></asp:ListItem>
+                                <asp:ListItem Text="Show Upcoming Events" Value="False"></asp:ListItem>
+                            </asp:RadioButtonList>
                         </div>
                         <div class="col-lg-4">
-                            <asp:TextBox ID="startDate" runat="server" CssClass="form-control datetimepicker"></asp:TextBox>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-offset-2 col-lg-2">
-                            <label>End Date</label>
-                        </div>
-                        <div class="col-lg-4">
-                            <asp:TextBox ID="endDate" runat="server" CssClass="form-control datetimepicker"></asp:TextBox>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-offset-2 col-lg-2">
-                            <label>Entry Validity</label>
-                        </div>
-                        <div class="col-lg-2">
-                            <asp:DropDownList CssClass="form-control" ID="ddlValidity" runat="server">
-                                <asp:ListItem Text="Select All" Value="Select All" Selected="true"></asp:ListItem>
-                                <asp:ListItem Text="Valid" Value="Valid"></asp:ListItem>
-                                <asp:ListItem Text="InValid" Value="Invalid"></asp:ListItem>
-                            </asp:DropDownList>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-offset-2 col-lg-2">
-                            <label>Entry Type</label>
-                        </div>
-                        <div class="col-lg-2">
-                            <asp:DropDownList CssClass="form-control" ID="ddlIsSent" runat="server">
-                                <asp:ListItem Text="Select All" Value="Select All" Selected="true"></asp:ListItem>
-                                <asp:ListItem Text="Past" Value="True"></asp:ListItem>
-                                <asp:ListItem Text="Upcoming" Value="False"></asp:ListItem>
-                            </asp:DropDownList>
-                        </div>
-                    </div>
-                    <div class="row" runat="server" visible="false">
-                        <div class="col-lg-offset-2 col-lg-2">
-                            <label>With Receipt Uploaded? - Yes</label>
-                        </div>
-                        <div class="col-lg-2">
-                            <asp:CheckBox runat="server" ID="cbUploadStatus" Checked="false" />
-                        </div>
-                    </div>
-                    <p>&nbsp;</p>
-                    <div class="row">
-                        <div class="col-lg-offset-4 col-lg-2">
-                            <asp:Button runat="server" ID="Filter"
-                                CssClass="btn btn-primary" Text="Filter" OnClick="Filter_Click" />
-                        </div>
-                    </div>
-
-                    <div class="row" runat="server" id="PurgeSel">
-                        <div class="col-lg-offset-4 col-lg-2">
                             <asp:Button CssClass="btn btn-danger" runat="server" ID="PurgeSelec"
                                 Text="Purge Selected Entries" OnClientClick="$('#divConfirm').modal('show');return false;" />
+                            <asp:Button CssClass="btn btn-default" runat="server" ID="ExportToCSV"
+                                Text="Export To CSV using comma" OnClick="ExportToCsv_click" />
+                        </div>
+                    </div>
+                    
+                    <div class="row" runat="server" id="PurgeSel">
+                        <div class="col-lg-offset-4 col-lg-2">
+                            <%--<asp:Button CssClass="btn btn-danger" runat="server" ID="PurgeSelec"
+                                Text="Purge Selected Entries" OnClientClick="$('#divConfirm').modal('show');return false;" />--%>
                         </div>
                     </div>
 
                     <div class="row" runat="server" id="ExportDiv">
                         <div class="col-lg-offset-4 col-lg-2">
-                            <asp:Button CssClass="btn btn-default" runat="server" ID="ExportToCSV"
-                                Text="Export To CSV using comma" OnClick="ExportToCsv_click" />
+                            <%--<asp:Button CssClass="btn btn-default" runat="server" ID="ExportToCSV"
+                                Text="Export To CSV using comma" OnClick="ExportToCsv_click" />--%>
                         </div>
 
                     </div>
@@ -90,36 +50,7 @@
                     </div>
                 </div>
             </div>
-            <p>&nbsp;</p>
-            <div class="row" runat="server" id="PagingDiv">
-                <div class="col-lg-12">
-                    <div style="text-align: center">
-                        <asp:Button CssClass="btn btn-default" runat="server" ID="FirstPage"
-                            Text="First Page" OnClick="FirstPage_Click" />
-
-                        <asp:Button CssClass="btn btn-default" runat="server" ID="PreviousPage"
-                            Text="<" OnClick="PreviousPage_Click" />
-
-                        <asp:TextBox runat="server" ID="CurrentPage" Style="width: 4%" TextMode="Number" Text="1"></asp:TextBox>
-
-                        <span class="label label-default">/
-                            <asp:Label runat="server" ID="lblTotalPages"></asp:Label></span>
-
-                        <asp:Button CssClass="btn btn-default" runat="server" ID="Go"
-                            Text="GO" OnClick="Filter_Click" />
-
-                        <asp:Button CssClass="btn btn-default" runat="server" ID="NextPage"
-                            Text=">" OnClick="NextPage_Click" />
-
-                        <asp:Button CssClass="btn btn-default" runat="server" ID="LastPage"
-                            Text="Last Page" OnClick="LastPage_Click" />
-
-                        <span class="label label-default">No Of Total Records :
-                            <asp:Label runat="server" ID="lblTotal"></asp:Label></span>
-                    </div>
-                </div>
-
-            </div>
+            
             <p>&nbsp;</p>
 
             <div class="row" runat="server" id="LoadedDiv">
@@ -192,6 +123,38 @@
                     </div>
                 </div>
             </div>
+
+            <p>&nbsp;</p>
+            <div class="row" runat="server" id="PagingDiv">
+                <div class="col-lg-12">
+                    <div style="text-align: center">
+                        <asp:Button CssClass="btn btn-default" runat="server" ID="FirstPage"
+                            Text="First Page" OnClick="FirstPage_Click" />
+
+                        <asp:Button CssClass="btn btn-default" runat="server" ID="PreviousPage"
+                            Text="<" OnClick="PreviousPage_Click" />
+
+                        <asp:TextBox runat="server" ID="CurrentPage" Style="width: 4%" TextMode="Number" Text="1"></asp:TextBox>
+
+                        <span class="label label-default">/
+                            <asp:Label runat="server" ID="lblTotalPages"></asp:Label></span>
+
+                        <asp:Button CssClass="btn btn-default" runat="server" ID="Go"
+                            Text="GO" />
+
+                        <asp:Button CssClass="btn btn-default" runat="server" ID="NextPage"
+                            Text=">" OnClick="NextPage_Click" />
+
+                        <asp:Button CssClass="btn btn-default" runat="server" ID="LastPage"
+                            Text="Last Page" OnClick="LastPage_Click" />
+
+                        <span class="label label-default">No Of Total Records :
+                            <asp:Label runat="server" ID="lblTotal"></asp:Label></span>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
     </div>
     <!-- Modal -->

@@ -22,6 +22,15 @@ namespace iSchedule.Views
         {
             if (!Page.IsPostBack)
             {
+                if (User.Identity.IsAuthenticated && User.IsInRole("Superusers"))
+                {
+
+                }
+                else
+                {
+                    Response.Redirect("/UI/Login.aspx");
+                }
+
                 UsersGV.DataSource = settingsBLL.getAllSettings();
                 UsersGV.DataBind();
             }

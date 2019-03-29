@@ -17,10 +17,17 @@ namespace iSchedule.Views
     {
         Repository repo = Repository.Instance;
         //Becoz u donno if some pages will need to have a different PageSize
-        static readonly int PageSize = 50;
+        static readonly int PageSize = 2;
         string appId = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {
+            appId = repo.Cookies_Get("uAppId");
+
+            if (string.IsNullOrEmpty(appId))
+            {
+                Response.Redirect("~/UI/ErrorPage.aspx");
+            }
+
             if (!Page.IsPostBack)
             {
                 PurgeDiv.Visible = false;
@@ -28,20 +35,81 @@ namespace iSchedule.Views
                 PurgeSel.Visible = false;
                 PagingDiv.Visible = false;
                 LoadedDiv.Visible = false;
-
-                startDate.Text = repo.FromUTCToLocal(repo.StartDate).ToString(repo.DateTimeFormat, CultureInfo.InvariantCulture);
-                endDate.Text = repo.FromUTCToLocal(repo.EndDate).ToString(repo.DateTimeFormat, CultureInfo.InvariantCulture);
-                
-            }
-            appId = repo.Cookies_Get("uAppId");
-
-            if (string.IsNullOrEmpty(appId))
-            {
-                Response.Redirect("~/UI/ErrorPage.aspx");
-            }
+                ShowEntries(radEvents.SelectedValue);
+            }            
         }
 
-        protected void Filter_Click(object sender, EventArgs e)
+        //protected void Filter_Click(object sender, EventArgs e)
+        //{
+        //    //Validate Input
+        //    int integer;
+
+        //    //Needs to Test
+        //    if (Int32.TryParse(CurrentPage.Text, out integer) == false)
+        //    {
+        //        lblModal.Text = "Please select a proper page!";
+        //        ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#divPopUp').modal('show');", true);
+        //        return;
+        //    }
+
+        //    if (lblTotal.Text != "" &&
+        //        (Int32.TryParse(CurrentPage.Text, out integer) == false ||
+        //        Convert.ToInt32(CurrentPage.Text) < 1 ||
+        //        Convert.ToInt32(CurrentPage.Text) > repo.calculateLastPage(Convert.ToInt32(lblTotal.Text), PageSize)))
+        //    {
+        //        lblModal.Text = "Please select a proper page!";
+        //        ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#divPopUp').modal('show');", true);
+        //        return;
+        //    }
+
+        //    var Options = new Options_Models()
+        //    {
+        //        isSent = ddlIsSent.SelectedValue,
+        //        Page = Convert.ToInt32(CurrentPage.Text),
+        //        PageSize = PageSize,
+        //        AppId = appId
+        //    };
+
+        //    var Result = repo.GetEntries(Options);
+
+        //    if (!Result.Valid)
+        //    {
+        //        lblModal.Text = Result.message;
+        //        ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#divPopUp').modal('show');", true);
+        //        return;
+        //    }
+
+        //    //json = SARepository.SerializerHelper(new Dictionary<string, object>() {
+        //    //        { "Count" , Query.Count() },
+        //    //        { "Entries" , retblock},
+        //    //        { "EntriesHeader" , headers}
+        //    //    });
+
+        //    lblTotal.Text = Result.TotalCount.ToString();
+        //    lblTotalPages.Text = repo.calculateLastPage(Convert.ToInt32(lblTotal.Text), PageSize).ToString();
+
+        //    var dt = repo.ListOfDictionaryToDataTable(Result.DataAsDictionary);
+            
+        //    EntriesGV.DataSource = dt; // Paging?
+        //    EntriesGV.DataKeyNames = Result.DataHeaders.ToArray();
+        //    EntriesGV.DataBind();
+            
+        //    if (User.Identity.IsAuthenticated && User.IsInRole("Superusers"))
+        //    {
+        //        PurgeDiv.Visible = true;
+        //        //PurgeSel.Visible = true;
+        //    }
+        //    else
+        //    {
+        //        PurgeDiv.Visible = false;
+        //        PurgeSel.Visible = true;
+        //    }
+        //    ExportDiv.Visible = true;
+        //    PagingDiv.Visible = true;
+        //    LoadedDiv.Visible = true;
+        //}
+
+        protected void ShowEntries(string _isSent)
         {
             //Validate Input
             int integer;
@@ -54,6 +122,20 @@ namespace iSchedule.Views
                 return;
             }
 
+            
+
+            var Options = new Options_Models()
+            {
+                isSent = _isSent,
+                Page = Convert.ToInt32(CurrentPage.Text),
+                PageSize = PageSize,
+                AppId = appId
+            };
+
+            var Result = repo.GetEntries(Options);
+
+            lblTotal.Text = Result.TotalCount.ToString();
+
             if (lblTotal.Text != "" &&
                 (Int32.TryParse(CurrentPage.Text, out integer) == false ||
                 Convert.ToInt32(CurrentPage.Text) < 1 ||
@@ -64,83 +146,10 @@ namespace iSchedule.Views
                 return;
             }
 
-
-            /*User submits a date assuming a Local Date, Therefore gotta convert that into UTC*/
-            /*Also means that all the dates coming in from DB will be in UTC and therefore need to be converted to Local Time*/
-
-            string dateString = startDate.Text;
-          
-            DateTime StartDate;
-
-            try
-            {
-                    if (DateTime.TryParseExact(dateString, repo.DateTimeFormat, CultureInfo.InvariantCulture,
-        DateTimeStyles.None, out StartDate))
-                {
-                    //Console.WriteLine(dateTime);
-                }
-                else
-                {
-                    lblModal.Text = "Please enter a proper date!";
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#divPopUp').modal('show');", true);
-                    return;
-
-                }
-            }
-            catch
-            {
-                lblModal.Text = "Please enter a proper date!";
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#divPopUp').modal('show');", true);
-                return;
-
-            }
-
-            dateString = endDate.Text;
-            DateTime EndDate;
-            try
-            {
-
-                if (DateTime.TryParseExact(dateString, repo.DateTimeFormat, CultureInfo.InvariantCulture,
-              DateTimeStyles.None, out EndDate))
-                {
-                    //Console.WriteLine(dateTime);
-                }
-                else
-                {
-                    lblModal.Text = "Please enter a proper date!";
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#divPopUp').modal('show');", true);
-                    return;
-
-                }
-
-            }
-            catch
-            {
-                lblModal.Text = "Please enter a proper date!";
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#divPopUp').modal('show');", true);
-                return;
-
-            }
-
-
-            var Options = new Options_Models()
-            {
-                StartDate = StartDate.AddHours(repo.SubtractLocalTimeZone),
-                EndDate = EndDate.AddHours(repo.SubtractLocalTimeZone),
-                ValidOnly = ddlValidity.SelectedValue,
-                isSent = ddlIsSent.SelectedValue,
-                Page = Convert.ToInt32(CurrentPage.Text),
-                PageSize = PageSize,
-                UploadStatus = cbUploadStatus.Checked,
-                AppId = appId
-            };
-
-            var Result = repo.GetEntries(Options);
-
             if (!Result.Valid)
             {
-                lblModal.Text = Result.message;
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#divPopUp').modal('show');", true);
+                //lblModal.Text = Result.message;
+                //ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#divPopUp').modal('show');", true);
                 return;
             }
 
@@ -150,15 +159,15 @@ namespace iSchedule.Views
             //        { "EntriesHeader" , headers}
             //    });
 
-            lblTotal.Text = Result.TotalCount.ToString();
+            
             lblTotalPages.Text = repo.calculateLastPage(Convert.ToInt32(lblTotal.Text), PageSize).ToString();
 
             var dt = repo.ListOfDictionaryToDataTable(Result.DataAsDictionary);
-            
+
             EntriesGV.DataSource = dt; // Paging?
             EntriesGV.DataKeyNames = Result.DataHeaders.ToArray();
             EntriesGV.DataBind();
-            
+
             if (User.Identity.IsAuthenticated && User.IsInRole("Superusers"))
             {
                 PurgeDiv.Visible = true;
@@ -172,9 +181,7 @@ namespace iSchedule.Views
             ExportDiv.Visible = true;
             PagingDiv.Visible = true;
             LoadedDiv.Visible = true;
-
         }
-
         public void ExportToCsv_click(object sender, EventArgs e)
         {
             //Validate Input
@@ -197,51 +204,8 @@ namespace iSchedule.Views
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#divPopUp').modal('show');", true);
                 return;
             }
-
-
-            //Based on Options?
             
-            /*User submits a date assuming a Local Date, Therefore gotta convert that into UTC*/
-            /*Also means that all the dates coming in from DB will be in UTC and therefore need to be converted to Local Time*/
-
-            string dateString = startDate.Text;
-          
-            DateTime StartDate;
-            if (DateTime.TryParseExact(dateString, repo.DateTimeFormat, CultureInfo.InvariantCulture,
-          DateTimeStyles.None, out StartDate))
-            {
-                //Console.WriteLine(dateTime);
-            }
-            else
-            {
-                lblModal.Text = "Please enter a proper date!";
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#divPopUp').modal('show');", true);
-                return;
-
-            }
-
-            dateString = endDate.Text;
-            DateTime EndDate;
-            if (DateTime.TryParseExact(dateString, repo.DateTimeFormat, CultureInfo.InvariantCulture,
-          DateTimeStyles.None, out EndDate))
-            {
-                //Console.WriteLine(dateTime);
-            }
-            else
-            {
-                lblModal.Text = "Please enter a proper date!";
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#divPopUp').modal('show');", true);
-                return;
-
-            }
-
-
-
             var Options = new Options_Models() {
-                StartDate = StartDate.AddHours(repo.SubtractLocalTimeZone),
-                EndDate = EndDate.AddHours(repo.SubtractLocalTimeZone),
-                ValidOnly = ddlValidity.SelectedValue,
-                UploadStatus = cbUploadStatus.Checked,
                 AppId = appId
             };
 
@@ -271,7 +235,8 @@ namespace iSchedule.Views
         protected void FirstPage_Click(object sender, EventArgs e)
         {
             CurrentPage.Text = (1).ToString();
-            Filter_Click(sender, e);
+            //Filter_Click(sender, e);
+            ShowEntries(radEvents.SelectedValue);
         }
 
         protected void PreviousPage_Click(object sender, EventArgs e)
@@ -280,7 +245,8 @@ namespace iSchedule.Views
             if (Int32.TryParse(CurrentPage.Text, out integer) == true && Convert.ToInt32(CurrentPage.Text) > 1)
             {
                 CurrentPage.Text = (Convert.ToInt32(CurrentPage.Text) - 1).ToString();
-                Filter_Click(sender, e);
+                //Filter_Click(sender, e);
+                ShowEntries(radEvents.SelectedValue);
             }
         }
 
@@ -290,14 +256,16 @@ namespace iSchedule.Views
             if (Int32.TryParse(CurrentPage.Text, out integer) == true && Convert.ToInt32(CurrentPage.Text) < repo.calculateLastPage(Convert.ToInt32(lblTotal.Text), PageSize))
             {
                 CurrentPage.Text = (Convert.ToInt32(CurrentPage.Text) + 1).ToString();
-                Filter_Click(sender, e);
+                //Filter_Click(sender, e);
+                ShowEntries(radEvents.SelectedValue);
             }
         }
 
         protected void LastPage_Click(object sender, EventArgs e)
         {
             CurrentPage.Text = repo.calculateLastPage(Convert.ToInt32(lblTotal.Text), PageSize).ToString();
-            Filter_Click(sender, e);
+            //Filter_Click(sender, e);
+            ShowEntries(radEvents.SelectedValue);
         }
 
         protected void PurgeSelected_Click(object sender, EventArgs e)
@@ -328,6 +296,15 @@ namespace iSchedule.Views
             Response.Redirect(Request.RawUrl);
         }
 
+        protected void radEvents_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            EntriesGV.DataSource = null;
+            EntriesGV.DataBind();
+            lblTotal.Text = "0";
+            CurrentPage.Text = "1";
+            ShowEntries(radEvents.SelectedValue);
+        }
+
         //protected void ConvertWinner_Click(object sender, EventArgs e)
         //{
         //    //Get the button that raised the event
@@ -355,9 +332,9 @@ namespace iSchedule.Views
         //        });
         //        db.SaveChanges();
 
-                
+
         //        lblModalNoCancel.Text = "Entry picked as Winner with ID : "+ Entry.AppId.ToString() + "!";
-                
+
         //        ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#divPopUpNoCancel').modal('show');", true);
 
         //        //This simulates the button click from within your code.

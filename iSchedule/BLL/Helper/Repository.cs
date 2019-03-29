@@ -833,14 +833,10 @@ namespace iSchedule.BLL
                 var FunctRes = new FunctionResult_Models(true);
 
 
-                var Query = db.Schedules.Where(s => s.CreatedOn >= Options.StartDate && s.CreatedOn <= Options.EndDate & s.AppId == Options.AppId);
+                var Query = db.Schedules.Where(s => s.AppId == Options.AppId);
 
 
                 //Filter Validity
-
-                Query = Options.ValidOnly.ToUpper() == "Valid".ToUpper() ? Query.Where(s => (bool)s.IsValid == true) :
-                    Options.ValidOnly.ToUpper() == "Invalid".ToUpper() ? Query.Where(s => (bool)s.IsValid == false) :
-                    Query;
 
                 Query = Options.isSent.ToUpper() == "True".ToUpper() ? Query.Where(s => (bool)s.IsSent == true) :
                     Options.isSent.ToUpper() == "False".ToUpper() ? Query.Where(s => (bool)s.IsSent == false) :
@@ -855,12 +851,14 @@ namespace iSchedule.BLL
 
                 var count = query.Count();
 
+                FunctRes.TotalCount = Query.Count();
+
                 if (count == 0)
                 {
                     return new FunctionResult_Models(false) { message = "No Entries Found!" };
                 }
 
-                FunctRes.TotalCount = Query.Count();
+                
 
                 FunctRes.DataHeaders = ExcludeHeaders(query.FirstOrDefault(), ScheduleExclusionFields.ToList());
 
@@ -877,13 +875,9 @@ namespace iSchedule.BLL
             {
                 var FunctRes = new FunctionResult_Models(true);
 
-                var Query = db.Schedules.Where(s => s.CreatedOn >= Options.StartDate && s.CreatedOn <= Options.EndDate & s.AppId == Options.AppId);
+                var Query = db.Schedules.Where(s => s.AppId == Options.AppId);
 
-                //Filter Validity
-
-                Query = Options.ValidOnly.ToUpper() == "Valid".ToUpper() ? Query.Where(s => (bool)s.IsValid == true) :
-                      Options.ValidOnly.ToUpper() == "Invalid".ToUpper() ? Query.Where(s => (bool)s.IsValid == false) :
-                      Query;
+                //Filter Validity                
 
                 var query = Query.AsEnumerable();
 

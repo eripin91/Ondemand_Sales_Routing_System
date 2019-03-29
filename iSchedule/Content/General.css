@@ -3,3 +3,10 @@
 }
 
 .Hide { display:none; }
+.marginRadio input[type="radio"] {
+    margin-left: 50px;
+    margin-right: 10px;    
+}
+.marginRadio{
+    font-size:18px;
+}
