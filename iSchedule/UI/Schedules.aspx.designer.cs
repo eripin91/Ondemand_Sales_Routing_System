@@ -22,13 +22,13 @@ namespace iSchedule.Views {
         protected global::System.Web.UI.WebControls.RadioButtonList radEvents;
         
         /// <summary>
-        /// PurgeSelec control.
+        /// Purge control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button PurgeSelec;
+        protected global::System.Web.UI.WebControls.Button Purge;
         
         /// <summary>
         /// ExportToCSV control.
@@ -67,13 +67,40 @@ namespace iSchedule.Views {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl PurgeDiv;
         
         /// <summary>
-        /// Purge control.
+        /// IsValidDiv control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Purge;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl IsValidDiv;
+        
+        /// <summary>
+        /// ddlValidity control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlValidity;
+        
+        /// <summary>
+        /// Div1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div1;
+        
+        /// <summary>
+        /// ddlIsSent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlIsSent;
         
         /// <summary>
         /// LoadedDiv control.

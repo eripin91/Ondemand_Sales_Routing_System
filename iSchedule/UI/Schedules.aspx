@@ -9,8 +9,8 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-3">
-                    <h1>View Entries</h1>
-                    <p>Displays all entries</p>
+                    <h1>View Schedules</h1>
+                    <p>Displays all schedules</p>
                     <br />
                     <div class="row">
                         <div class="col-lg-8">
@@ -20,8 +20,8 @@
                             </asp:RadioButtonList>
                         </div>
                         <div class="col-lg-4">
-                            <asp:Button CssClass="btn btn-danger" runat="server" ID="PurgeSelec"
-                                Text="Purge Selected Entries" OnClientClick="$('#divConfirm').modal('show');return false;" />
+                            <asp:Button CssClass="btn btn-danger" runat="server" ID="Purge"
+                                Text="Purge" OnClientClick="$('#divConfirmAll').modal('show'); return false;" />
                             <asp:Button CssClass="btn btn-default" runat="server" ID="ExportToCSV"
                                 Text="Export To CSV using comma" OnClick="ExportToCsv_click" />
                         </div>
@@ -44,8 +44,8 @@
 
                     <div class="row" runat="server" id="PurgeDiv">
                         <div class="col-lg-offset-4 col-lg-2">
-                            <asp:Button CssClass="btn btn-danger" runat="server" ID="Purge"
-                                Text="Purge" OnClientClick="$('#divConfirmAll').modal('show'); return false;" />
+                            <%--<asp:Button CssClass="btn btn-danger" runat="server" ID="Purge"
+                                Text="Purge" OnClientClick="$('#divConfirmAll').modal('show'); return false;" />--%>
                         </div>
                     </div>
                 </div>
@@ -53,6 +53,28 @@
             
             <p>&nbsp;</p>
 
+            <div>
+                <div id="IsValidDiv" runat="server" class="row">
+                    <div class="col-lg-offset-5 col-lg-2">
+      
+                        <asp:DropDownList CssClass="form-control" ID="ddlValidity" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlValidity_SelectedIndexChanged">
+                            <asp:ListItem Text="Valid" Value="Valid" Selected="True"></asp:ListItem>
+                            <asp:ListItem Text="InValid" Value="Invalid"></asp:ListItem>
+                        </asp:DropDownList>
+                    </div>
+                </div>
+            </div><br />
+            <div>
+                <div id="Div1" runat="server" class="row">
+                    <div class="col-lg-offset-5 col-lg-2">
+      
+                        <asp:DropDownList CssClass="form-control" ID="ddlIsSent" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlIsSent_SelectedIndexChanged">
+                            <asp:ListItem Text="Sent" Value="True" Selected="True"></asp:ListItem>
+                            <asp:ListItem Text="Not Sent" Value="False"></asp:ListItem>
+                        </asp:DropDownList>
+                    </div>
+                </div>
+            </div><br />
             <div class="row" runat="server" id="LoadedDiv">
                 <div class="col-lg-12" style="overflow: auto;">
                     <div class="table-responsive">
@@ -210,7 +232,7 @@
                             </div>--%>
                 <div class="modal-body">
                     <h3>
-                        <asp:Label runat="server" ID="lblConfirm" Text="Are you sure to delete entry(s)?"> </asp:Label></h3>
+                        <asp:Label runat="server" ID="lblConfirm" Text="Are you sure to delete schedule(s)?"> </asp:Label></h3>
                 </div>
                 <div class="modal-footer">
                     <asp:Button CssClass="btn btn-danger" runat="server" ID="PurgeSelected"
@@ -233,7 +255,7 @@
                             </div>--%>
                 <div class="modal-body">
                     <h3>
-                        <asp:Label runat="server" ID="lblConfirmAll" Text="Are you sure to delete entry(s)?"> </asp:Label></h3>
+                        <asp:Label runat="server" ID="lblConfirmAll" Text="Are you sure to delete schedule(s)?"> </asp:Label></h3>
                 </div>
                 <div class="modal-footer">
                     <asp:Button CssClass="btn btn-danger" runat="server" ID="PurgeAll"

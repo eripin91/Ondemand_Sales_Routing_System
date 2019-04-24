@@ -29,13 +29,8 @@ namespace iSchedule.Views
                     string appSecret = string.Empty;
                     DateTime expiredDT;
 
-                    if (string.IsNullOrEmpty(repo.Cookies_Get("uAppId")))
+                    if (string.IsNullOrEmpty(repo.Session_Get("uAppId")))
                     {
-                        byte[] et = repo.EncryptStringToBytes_Aes("2700|800f7db9-67a3-4f35-af2d-f14badb62311|1893456000", repo.DecryptAESKey, repo.DecryptAESinitVector);
-
-                        string urlEncode = HttpUtility.UrlEncode(Request.QueryString["token"]);
-                        string tk = HttpUtility.UrlEncode(Convert.ToBase64String(et.ToArray()));
-
                         byte[] EncryptedToken = Convert.FromBase64String(Request.QueryString["token"]);
 
                         string DecryptedToken = repo.DecryptStringFromBytes_Aes(EncryptedToken, repo.DecryptAESKey, repo.DecryptAESinitVector);
@@ -44,25 +39,19 @@ namespace iSchedule.Views
                         appSecret = DecryptedToken.Split('|')[1];
                         DateTime.TryParse(DecryptedToken.Split('|')[2], out expiredDT);
 
-                        repo.Cookies_Set("uAppId", appId, DateTime.Now.AddDays(1));
-                        repo.Cookies_Set("uAppSecret", appSecret, DateTime.Now.AddDays(1));
-                        repo.Cookies_Set("uExpiredTick", expiredDT.ToString(), DateTime.Now.AddDays(1));
+                        DateTime currentDT;
+                        DateTime.TryParse(DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss.fffzzz"), out currentDT);
+                        if (DateTime.Compare(expiredDT, currentDT) < 0) Response.Redirect("~/UI/ErrorPage.aspx", false);
+
+                        repo.Session_Set("uAppId", appId);
                     }
                     else
                     {
-                        appId = repo.Cookies_Get("uAppId");
-                        appSecret = repo.Cookies_Get("uAppSecret");
-                        DateTime.TryParse(repo.Cookies_Get("uExpiredTick"), out expiredDT); 
-                    }
-                    //check tick is not expired
-                    //Int32 unixTimestamp = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
-                    //long tickTimeStamp = DateTime.UtcNow.Ticks;
-
-                    DateTime currentDT;
-                    DateTime.TryParse(DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss.fffzzz"),out currentDT);
-
-                    //if (expiredTick < tickTimeStamp) Response.Redirect("~/UI/ErrorPage.aspx",false);
-                    if(DateTime.Compare(expiredDT, currentDT)<0) Response.Redirect("~/UI/ErrorPage.aspx", false);
+                        appId = repo.Session_Get("uAppId");
+                        Settings objSettings = settingsBLL.getSettingsByAppId(appId);
+                        if (objSettings != null)
+                            appSecret = objSettings.AppSecret;
+                    }                    
 
                     Settings setting = settingsBLL.getSettingsByAppId(appId);
                     if (setting == null)
@@ -87,7 +76,7 @@ namespace iSchedule.Views
                     {
                         
                         TimeSpan addTimeZone = TimeSpan.FromHours(repo.AddLocalTimeZone);
-                        if (setting.Scheduletime != null) sendTime.Text =  ((TimeSpan)setting.Scheduletime).Add(addTimeZone).ToString();
+                        if (setting.Scheduletime != null) sendTime.Text = Convert.ToDateTime(((TimeSpan)setting.Scheduletime).Add(addTimeZone).ToString()).ToString("HH:mm");
                         areaMsgTemplate.Text = setting.MessageTemplate;
                     }
                 }
@@ -99,12 +88,13 @@ namespace iSchedule.Views
         }
         protected void Save_Click(object sender, EventArgs e)
         {
-            string appId = repo.Cookies_Get("uAppId");
+            string appId = repo.Session_Get("uAppId");
 
             Settings setting = settingsBLL.getSettingsByAppId(appId);
 
             TimeSpan minusTimeZone = TimeSpan.FromHours(repo.SubtractLocalTimeZone);
-            setting.Scheduletime = TimeSpan.Parse(sendTime.Text).Add(minusTimeZone);
+            TimeSpan cycleTimeZone = TimeSpan.FromHours(repo.CycleLocalTimeZone);
+            setting.Scheduletime = TimeSpan.Parse(sendTime.Text).Hours < (repo.SubtractLocalTimeZone * -1) ? TimeSpan.Parse(sendTime.Text).Add(cycleTimeZone) : TimeSpan.Parse(sendTime.Text).Add(minusTimeZone);
             setting.MessageTemplate = areaMsgTemplate.Text;
 
             Settings newSettings = settingsBLL.update(setting);

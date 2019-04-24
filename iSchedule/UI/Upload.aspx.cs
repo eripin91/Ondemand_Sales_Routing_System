@@ -24,7 +24,7 @@ namespace iSchedule.Views
             {
                 
             }
-            appId = repo.Cookies_Get("uAppId");
+            appId = repo.Session_Get("uAppId");
             if (string.IsNullOrEmpty(appId))
             {
                 Response.Redirect("~/UI/ErrorPage.aspx");

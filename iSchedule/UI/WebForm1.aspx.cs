@@ -19,12 +19,12 @@ namespace iSchedule.UI
 
                 string DecryptedToken = repo.DecryptStringFromBytes_Aes(EncryptedToken, repo.DecryptAESKey, repo.DecryptAESinitVector);
 
-                lblKey.Text = Convert.ToBase64String(repo.DecryptAESKey).ToString();
-                lblIV.Text = Convert.ToBase64String(repo.DecryptAESinitVector).ToString();
+                
                 lblDecrypted.Text = DecryptedToken;
             }
+            lblKey.Text = Convert.ToBase64String(repo.DecryptAESKey).ToString();
+            lblIV.Text = Convert.ToBase64String(repo.DecryptAESinitVector).ToString();
 
-        
         }
 
         protected void Button1_Click(object sender, EventArgs e)

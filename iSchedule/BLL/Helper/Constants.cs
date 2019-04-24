@@ -78,6 +78,7 @@ namespace iSchedule.BLL
 
         public readonly int AddLocalTimeZone = 8;
         public readonly int SubtractLocalTimeZone = -8;
+        public readonly int CycleLocalTimeZone = 16;
         public readonly string DateTimeFormat = "dd MMM yyyy HH:mm:ss";
 
 

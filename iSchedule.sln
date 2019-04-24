@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iSchedule", "iSchedule\iSchedule.csproj", "{9E50FED7-B519-412B-905B-153A56B2CF7F}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoSent_iSchedule_Function", "AutoSent_iSchedule_Function\AutoSent_iSchedule_Function.csproj", "{742634CD-9F85-4F4D-A565-E03F02FA9022}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoSent_iSchedule_Timed_Trigger_Function", "AutoSent_iSchedule_Timed_Trigger_Function\AutoSent_iSchedule_Timed_Trigger_Function.csproj", "{3FC45091-569B-48E2-ADB8-A3699095A5D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{9E50FED7-B519-412B-905B-153A56B2CF7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E50FED7-B519-412B-905B-153A56B2CF7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E50FED7-B519-412B-905B-153A56B2CF7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{742634CD-9F85-4F4D-A565-E03F02FA9022}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{742634CD-9F85-4F4D-A565-E03F02FA9022}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{742634CD-9F85-4F4D-A565-E03F02FA9022}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{742634CD-9F85-4F4D-A565-E03F02FA9022}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FC45091-569B-48E2-ADB8-A3699095A5D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FC45091-569B-48E2-ADB8-A3699095A5D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FC45091-569B-48E2-ADB8-A3699095A5D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FC45091-569B-48E2-ADB8-A3699095A5D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

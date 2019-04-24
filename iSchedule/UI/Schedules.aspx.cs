@@ -17,11 +17,11 @@ namespace iSchedule.Views
     {
         Repository repo = Repository.Instance;
         //Becoz u donno if some pages will need to have a different PageSize
-        static readonly int PageSize = 2;
+        static readonly int PageSize = 50;
         string appId = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {
-            appId = repo.Cookies_Get("uAppId");
+            appId = repo.Session_Get("uAppId");
 
             if (string.IsNullOrEmpty(appId))
             {
@@ -30,12 +30,16 @@ namespace iSchedule.Views
 
             if (!Page.IsPostBack)
             {
-                PurgeDiv.Visible = false;
-                ExportDiv.Visible = false;
-                PurgeSel.Visible = false;
-                PagingDiv.Visible = false;
-                LoadedDiv.Visible = false;
-                ShowEntries(radEvents.SelectedValue);
+                //PurgeDiv.Visible = false;
+                //ExportDiv.Visible = false;
+                //PurgeSel.Visible = false;
+                //PagingDiv.Visible = false;
+                //LoadedDiv.Visible = false;
+                EntriesGV.DataSource = null;
+                EntriesGV.DataBind();
+                lblTotal.Text = "0";
+                CurrentPage.Text = "1";
+                ShowEntries();
             }            
         }
 
@@ -109,7 +113,7 @@ namespace iSchedule.Views
         //    LoadedDiv.Visible = true;
         //}
 
-        protected void ShowEntries(string _isSent)
+        protected void ShowEntries()
         {
             //Validate Input
             int integer;
@@ -122,11 +126,11 @@ namespace iSchedule.Views
                 return;
             }
 
-            
-
             var Options = new Options_Models()
             {
-                isSent = _isSent,
+                ValidOnly= ddlValidity.SelectedValue,
+                isSent = ddlIsSent.SelectedValue,
+                isPast = radEvents.SelectedValue,
                 Page = Convert.ToInt32(CurrentPage.Text),
                 PageSize = PageSize,
                 AppId = appId
@@ -236,7 +240,7 @@ namespace iSchedule.Views
         {
             CurrentPage.Text = (1).ToString();
             //Filter_Click(sender, e);
-            ShowEntries(radEvents.SelectedValue);
+            ShowEntries();
         }
 
         protected void PreviousPage_Click(object sender, EventArgs e)
@@ -246,7 +250,7 @@ namespace iSchedule.Views
             {
                 CurrentPage.Text = (Convert.ToInt32(CurrentPage.Text) - 1).ToString();
                 //Filter_Click(sender, e);
-                ShowEntries(radEvents.SelectedValue);
+                ShowEntries();
             }
         }
 
@@ -257,7 +261,7 @@ namespace iSchedule.Views
             {
                 CurrentPage.Text = (Convert.ToInt32(CurrentPage.Text) + 1).ToString();
                 //Filter_Click(sender, e);
-                ShowEntries(radEvents.SelectedValue);
+                ShowEntries();
             }
         }
 
@@ -265,7 +269,7 @@ namespace iSchedule.Views
         {
             CurrentPage.Text = repo.calculateLastPage(Convert.ToInt32(lblTotal.Text), PageSize).ToString();
             //Filter_Click(sender, e);
-            ShowEntries(radEvents.SelectedValue);
+            ShowEntries();
         }
 
         protected void PurgeSelected_Click(object sender, EventArgs e)
@@ -291,7 +295,8 @@ namespace iSchedule.Views
 
         protected void Purge_Click(object sender, EventArgs e)
         {
-            var result = repo.PurgeEntries();
+            bool isSent = radEvents.SelectedValue.ToUpper()=="TRUE".ToUpper()?true:false;
+            var result = repo.PurgeEntriesByAppIdAndIsSent(appId,isSent);
 
             Response.Redirect(Request.RawUrl);
         }
@@ -302,7 +307,30 @@ namespace iSchedule.Views
             EntriesGV.DataBind();
             lblTotal.Text = "0";
             CurrentPage.Text = "1";
-            ShowEntries(radEvents.SelectedValue);
+
+            ddlIsSent.SelectedIndex = 0;
+            ddlValidity.SelectedIndex = 0;
+            ShowEntries();
+        }
+
+        protected void ddlValidity_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            EntriesGV.DataSource = null;
+            EntriesGV.DataBind();
+            lblTotal.Text = "0";
+            CurrentPage.Text = "1";
+            
+            ShowEntries();
+        }
+
+        protected void ddlIsSent_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            EntriesGV.DataSource = null;
+            EntriesGV.DataBind();
+            lblTotal.Text = "0";
+            CurrentPage.Text = "1";
+            
+            ShowEntries();
         }
 
         //protected void ConvertWinner_Click(object sender, EventArgs e)

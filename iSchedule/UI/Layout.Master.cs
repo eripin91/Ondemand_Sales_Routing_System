@@ -37,7 +37,7 @@ namespace iSchedule.Views
                 UserSettings.Visible = false;
                 UserUpload.Visible = false;
                 UserSchedules.Visible = false;
-                lblAppId.Text = repo.Cookies_Get("uAppId");
+                lblAppId.Text = repo.Session_Get("uAppId");
                 //AdminManageSettings.Visible = false;
 
                 if (HttpContext.Current.User.IsInRole("Superusers"))
@@ -62,9 +62,8 @@ namespace iSchedule.Views
         {
             var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
             authenticationManager.SignOut();
-            Response.Cookies["uAppId"].Expires = DateTime.Now.AddDays(-1);
-            Response.Cookies["uAppSecret"].Expires = DateTime.Now.AddDays(-1);
-            Response.Cookies["uExpiredTick"].Expires = DateTime.Now.AddDays(-1);
+            Session.Abandon();
+
 
             Response.Redirect("~/UI/Login.aspx");
         }

@@ -25,6 +25,7 @@ namespace iSchedule.Models
     {
         public DateTime StartDate;
         public DateTime EndDate;
+        public string isPast;
         public string ValidOnly;
         public string AppId;
         public int Page;

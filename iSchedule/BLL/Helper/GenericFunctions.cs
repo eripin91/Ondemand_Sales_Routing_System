@@ -667,23 +667,38 @@ namespace iSchedule.BLL
 
         }
 
-        public void Cookies_Set(string key, string value, DateTime expires)
+        //public void Session_Set(string key, string value, DateTime expires)
+        //{
+        //    HttpCookie cookie = new HttpCookie(key, value);
+        //    cookie.Expires = expires;
+        //    HttpContext.Current.Response.SetCookie(cookie);
+        //}
+
+        //public string Session_Get(string key)
+        //{
+        //    string value = "";
+        //    if (HttpContext.Current.Request.Cookies.AllKeys.Contains(key))
+        //    {
+        //        value = HttpContext.Current.Request.Cookies[key].Value;
+        //    }
+
+        //    return value;
+        //}
+
+        public void Session_Set(string key, string value)
         {
-            HttpCookie cookie = new HttpCookie(key, value);
-            cookie.Expires = expires;
-            HttpContext.Current.Response.SetCookie(cookie);
+            HttpContext.Current.Session[key] = value;
         }
 
-        public string Cookies_Get(string key)
+        public string Session_Get(string key)
         {
             string value = "";
-            if (HttpContext.Current.Request.Cookies.AllKeys.Contains(key))
+            if (HttpContext.Current.Session[key]!=null)
             {
-                value = HttpContext.Current.Request.Cookies[key].Value;
+                value = HttpContext.Current.Session[key].ToString();
             }
 
             return value;
         }
-
     }
 }

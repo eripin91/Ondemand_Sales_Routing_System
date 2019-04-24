@@ -238,7 +238,7 @@ namespace iSchedule.BLL
                     regex = new Regex(ValidationRegexMobileNo, RegexOptions.IgnoreCase);
                     Match = regex.Match(Schedule.MobileNo.Trim());
 
-                    string appId = Cookies_Get("uAppId");
+                    string appId = Session_Get("uAppId");
 
                     if (string.IsNullOrEmpty(appId))
                     {
@@ -474,7 +474,7 @@ namespace iSchedule.BLL
                             }
                         }
 
-                        string appId = Cookies_Get("uAppId");
+                        string appId = Session_Get("uAppId");
 
                         if (!string.IsNullOrEmpty(appId))
                         {
@@ -835,8 +835,11 @@ namespace iSchedule.BLL
 
                 var Query = db.Schedules.Where(s => s.AppId == Options.AppId);
 
-
-                //Filter Validity
+                Query = Options.isPast.ToUpper() == "True".ToUpper() ? Query.Where(s => s.EventDate < DateTime.UtcNow): Query.Where(s => s.EventDate >= DateTime.UtcNow);                
+                
+                Query = Options.ValidOnly.ToUpper() == "Valid".ToUpper() ? Query.Where(s => (bool)s.IsValid == true) :
+                      Options.ValidOnly.ToUpper() == "Invalid".ToUpper() ? Query.Where(s => (bool)s.IsValid == false) :
+                      Query;
 
                 Query = Options.isSent.ToUpper() == "True".ToUpper() ? Query.Where(s => (bool)s.IsSent == true) :
                     Options.isSent.ToUpper() == "False".ToUpper() ? Query.Where(s => (bool)s.IsSent == false) :
@@ -926,6 +929,19 @@ namespace iSchedule.BLL
             using (var db = new BaseEntities())
             {
                 IQueryable<Schedules> schedules = db.Schedules.Where(s => s.AppId == appId);
+                db.Schedules.RemoveRange(schedules);
+                db.SaveChanges();
+
+                return new FunctionResult_Models(true) { message = "Successfully Purged!" };
+            }
+
+        }
+
+        public FunctionResult_Models PurgeEntriesByAppIdAndIsSent(string appId, bool isSent)
+        {
+            using (var db = new BaseEntities())
+            {
+                IQueryable<Schedules> schedules = db.Schedules.Where(s => s.AppId == appId && s.IsSent== isSent);
                 db.Schedules.RemoveRange(schedules);
                 db.SaveChanges();
 

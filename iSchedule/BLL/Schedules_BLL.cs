@@ -30,7 +30,7 @@ namespace iSchedule.BLL
         {
             using (var db = new BaseEntities())
             {
-                return db.Schedules.Where(s => !s.IsSent & s.AppId==appId).ToList();
+                return db.Schedules.Where(s => !s.IsSent && s.AppId==appId && s.IsValid).ToList();
             }
         }
         public Schedules update(Schedules _schedules)
