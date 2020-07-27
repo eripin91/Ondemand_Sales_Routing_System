@@ -7,6 +7,8 @@
       <Diagram DiagramId="d7bba30e8ab141cea09710f6a61893c0" Name="Diagram1">
         <EntityTypeShape EntityType="BaseDBEntities.Schedules" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="BaseDBEntities.Settings" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BaseDBEntities.AspNetUsers" Width="1.5" PointX="0.75" PointY="6.375" />
+        <AssociationConnector Association="BaseDBEntities.UsersSettings" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

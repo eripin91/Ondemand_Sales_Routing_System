@@ -34,6 +34,8 @@ namespace iSchedule.Views
                 //}
 
                 AdminUser.Visible = false;
+                AdminSettings.Visible = false;
+
                 UserSettings.Visible = false;
                 UserUpload.Visible = false;
                 UserSchedules.Visible = false;
@@ -43,6 +45,7 @@ namespace iSchedule.Views
                 if (HttpContext.Current.User.IsInRole("Superusers"))
                 {
                     AdminUser.Visible = true;
+                    AdminSettings.Visible = true;
                     UserSettings.Visible = false;
                     UserUpload.Visible = false;
                     UserSchedules.Visible = false;

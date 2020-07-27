@@ -1,8 +1,9 @@
 ﻿<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolKit" %>
 
-<%@ Page Title="" Language="C#" MasterPageFile="~/UI/Layout.Master" AutoEventWireup="true" CodeBehind="Users.aspx.cs" Inherits="iSchedule.Views.UsersView" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/UI/Layout.Master" AutoEventWireup="true" CodeBehind="AdminUsers.aspx.cs" Inherits="iSchedule.Views.AdminUsersView" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadPlaceHolder" runat="server">
+    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div id="page-content-wrapper">
@@ -12,6 +13,10 @@
                     <h4>Users</h4><br />
                 </div>
             </div>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#divAddPopUp">
+              Add
+            </button>
+            <br /><br /><br />
             <asp:HiddenField runat="server" ID="hdnEntryID" />
             <div class="row" runat="server" id="LoadedDiv">
                 <div class="col-lg-12" style="overflow: auto;">
@@ -20,14 +25,22 @@
                             AutoGenerateColumns="false"
                             EmptyDataText="There are no data records to display.">
                             <Columns>
-                                <asp:BoundField DataField="SettingsId" HeaderText="SettingsId" HeaderStyle-CssClass="Hide" ItemStyle-CssClass="Hide" />
+                                <asp:BoundField DataField="Id" HeaderText="Id" HeaderStyle-CssClass="Hide" ItemStyle-CssClass="Hide" />
                                 <%--     <asp:TemplateField HeaderText="Convert To Winner">
                                     <ItemTemplate>
                                         <asp:Button runat="server" Text="Pick Entry" CssClass="btn btn-default" ID="ConvertWinner" OnClick="ConvertWinner_Click" Visible='<%# (Convert.ToBoolean(Eval("IsValid")) && Convert.ToBoolean(Eval("ExcludePastWinner"))) %>' />
                                     </ItemTemplate>
                                 </asp:TemplateField>--%>
-                                <asp:BoundField DataField="AppId" HeaderText="App Id" />
-                                <asp:BoundField DataField="AppSecret" HeaderText="App Secret" />
+                                <asp:BoundField DataField="Email" HeaderText="Email" />
+                                <asp:BoundField DataField="EmailConfirmed" HeaderText="Email Confirmed?" />
+                                <asp:BoundField DataField="UserName" HeaderText="UserName" />
+                                <asp:TemplateField HeaderText="Email">
+                                    <ItemTemplate>
+                                        <asp:Button runat="server" Text="Email" CssClass="btn btn-default" ID="Email"
+                                            OnClick="Email_Click" OnClientClick="return confirm('Are you sure you want to proceed?');"
+                                             />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Delete">
                                     <ItemTemplate>
                                         <asp:Button runat="server" Text="Delete" CssClass="btn btn-default" ID="Delete"
@@ -81,6 +94,36 @@
                         <asp:Label runat="server" ID="lblModal" Text=""> </asp:Label></h3>
                 </div>
                 <div class="modal-footer">                    
+
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                    <%--   <asp:Button ID="btnCancel" runat="server" Text=""  OnClientClick="" />--%>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="divAddPopUp" class="modal fade" aria-hidden="false" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <%--    <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title"></h4>
+                            </div>--%>
+                <div class="modal-body">
+                    <p>
+                        <asp:Literal runat="server" ID="StatusMessage" />
+                    </p> 
+                    <h5 style="font-weight: bold">Email *</h5>
+                    <asp:TextBox runat="server" ID="Email" CssClass="form-control" TextMode="Email"></asp:TextBox>
+                    <p>
+                        &nbsp;
+               
+                    </p>
+                </div>
+                <div class="modal-footer">   
+                    <asp:button CssClass="btn btn-primary" runat="server" Text="Add" onclick="Add_Click"></asp:button>
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
                     <%--   <asp:Button ID="btnCancel" runat="server" Text=""  OnClientClick="" />--%>
                 </div>

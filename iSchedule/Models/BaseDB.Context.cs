@@ -27,5 +27,6 @@ namespace iSchedule.Models
     
         public virtual DbSet<Schedules> Schedules { get; set; }
         public virtual DbSet<Settings> Settings { get; set; }
+        public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
     }
 }

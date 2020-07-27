@@ -157,6 +157,7 @@
     <Content Include="Content\bootstrap.cosmo.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\edm\index.html" />
     <Content Include="Content\General.css" />
     <Content Include="Content\GGDcss.css" />
     <Content Include="Content\GGDcssMobile.css" />
@@ -219,11 +220,12 @@
     <Content Include="Scripts\refs\moment.js" />
     <Content Include="Scripts\refs\ui-bootstrap-tpls-0.13.4.min.js" />
     <Content Include="Scripts\refs\ui-bootstrap-tpls-1.3.3.min.js" />
+    <Content Include="UI\AdminUsers.aspx" />
+    <Content Include="UI\AdminSettings.aspx" />
     <Content Include="UI\ErrorPage.aspx" />
     <Content Include="UI\Schedules.aspx" />
     <Content Include="UI\Login.aspx" />
     <Content Include="UI\Upload.aspx" />
-    <Content Include="UI\Users.aspx" />
     <Content Include="UI\Settings.aspx" />
     <Content Include="UI\WebForm1.aspx" />
     <Content Include="ViewSwitcher.ascx" />
@@ -246,7 +248,11 @@
     <Compile Include="BLL\Helper\MimeDetective.cs" />
     <Compile Include="BLL\Helper\Repository.cs" />
     <Compile Include="BLL\Helper\TextMediaTypeFormatter.cs" />
+    <Compile Include="BLL\Users_BLL.cs" />
     <Compile Include="Controllers\RESTController.cs" />
+    <Compile Include="Models\AspNetUsers.cs">
+      <DependentUpon>BaseDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\BaseDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -281,6 +287,20 @@
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="UI\AdminUsers.aspx.cs">
+      <DependentUpon>AdminUsers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\AdminUsers.aspx.designer.cs">
+      <DependentUpon>AdminUsers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\AdminSettings.aspx.cs">
+      <DependentUpon>AdminSettings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\AdminSettings.aspx.designer.cs">
+      <DependentUpon>AdminSettings.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UI\ErrorPage.aspx.cs">
       <DependentUpon>ErrorPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -315,13 +335,6 @@
     </Compile>
     <Compile Include="UI\Upload.aspx.designer.cs">
       <DependentUpon>Upload.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Users.aspx.cs">
-      <DependentUpon>Users.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UI\Users.aspx.designer.cs">
-      <DependentUpon>Users.aspx</DependentUpon>
     </Compile>
     <Compile Include="UI\Settings.aspx.cs">
       <DependentUpon>Settings.aspx</DependentUpon>

@@ -227,7 +227,46 @@ namespace iSchedule.BLL
             value = Regex.Replace(value, @"\s+", " ");       // Convert all whitespaces to a single space.
             return value.Trim();
         }
+        public static string CreateEmailBody(string EmailBodyPath, string email,string pass)
+        {
 
+            string body = string.Empty;
+            //using streamreader for reading my htmltemplate   
+
+            using (StreamReader reader = new StreamReader(HttpContext.Current.Server.MapPath(EmailBodyPath)))
+            {
+                body = reader.ReadToEnd();
+            }
+
+            return body.Replace("{email}",email).Replace("{pass}",pass);
+
+        }
+        public static void SendEmail(string From, string To, string FromDisplayName, string Subject, string host, int port, string SMTPUserName, string SMTPPassword, string HtmlBody)
+        {
+            MailAddress addressFrom = new MailAddress(From, FromDisplayName);
+            MailAddress addressTo = new MailAddress(To);
+            MailMessage message = new MailMessage(addressFrom, addressTo);
+
+            message.Subject = Subject;
+            //string htmlString = @"<html>
+            //          <body>
+            //          <p>Dear Ms. Susan,</p>
+            //          <p>Thank you for your letter of yesterday inviting me to come for an interview on Friday afternoon, 5th July, at 2:30.
+            //                  I shall be happy to be there as requested and will bring my diploma and other papers with me.</p>
+            //          <p>Sincerely,<br>-Jack</br></p>
+            //          </body>
+            //          </html>
+            //         ";
+            message.IsBodyHtml = true;
+            message.Body = HtmlBody;
+            SmtpClient client = new SmtpClient();
+            client.Host = host;
+            client.Port = port;
+            client.UseDefaultCredentials = false;
+            client.Credentials = new NetworkCredential(SMTPUserName, SMTPPassword);
+            client.EnableSsl = true;
+            client.Send(message);
+        }
         public static void SendSms(int AppID, Guid AppSecret, string receivers, string content)
         {
             //HttpWebRequest req = (HttpWebRequest)WebRequest.Create("http://www.smsdome.com/api/http/sendsms.aspx");

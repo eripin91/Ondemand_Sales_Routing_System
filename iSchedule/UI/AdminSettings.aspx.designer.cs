@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace iSchedule.Views {
-    
-    
-    public partial class UsersView {
-        
+namespace iSchedule.Views
+{
+
+
+    public partial class AdminSettingsView
+    {
+
         /// <summary>
         /// hdnEntryID control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace iSchedule.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnEntryID;
-        
+
         /// <summary>
         /// LoadedDiv control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace iSchedule.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl LoadedDiv;
-        
+
         /// <summary>
         /// UsersGV control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace iSchedule.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView UsersGV;
-        
+
         /// <summary>
         /// lblModal control.
         /// </summary>

@@ -55,9 +55,19 @@
                             <a style="color:#999999">
                         AppID <asp:Label runat="server" ID="lblAppId"></asp:Label></a>
                         </li>
-                        <li runat="server" id="AdminUser">
+                        <%--<li runat="server" id="Users">
                             <a href="/UI/Users.aspx">
                                 <i class="fa fa-pencil"></i>&nbsp;Users
+                            </a>
+                        </li>--%>
+                        <li runat="server" id="AdminSettings">
+                            <a href="/UI/AdminSettings.aspx">
+                                <i class="fa fa-pencil"></i>&nbsp;Admin settings
+                            </a>
+                        </li>
+                        <li runat="server" id="AdminUser">
+                            <a href="/UI/AdminUsers.aspx">
+                                <i class="fa fa-pencil"></i>&nbsp;Admin Users
                             </a>
                         </li>
                         <li runat="server" id="UserSettings">
@@ -114,7 +124,7 @@
                     format: 'd M Y H:i:s'
                 });
                 jQuery('.timepicker').datetimepicker({ datepicker: false,
-  step: 1,
+  step: 15,
   format: 'H:i' });
             });
         </script>

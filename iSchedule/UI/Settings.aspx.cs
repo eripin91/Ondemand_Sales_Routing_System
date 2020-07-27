@@ -30,7 +30,7 @@ namespace iSchedule.Views
                     DateTime expiredDT;
 
                     if (string.IsNullOrEmpty(repo.Session_Get("uAppId")))
-                    {
+                    {   
                         byte[] EncryptedToken = Convert.FromBase64String(Request.QueryString["token"]);
 
                         string DecryptedToken = repo.DecryptStringFromBytes_Aes(EncryptedToken, repo.DecryptAESKey, repo.DecryptAESinitVector);

@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace iSchedule.Views {
-    
-    
-    public partial class Layout {
-        
+namespace iSchedule.Views
+{
+
+
+    public partial class Layout
+    {
+
         /// <summary>
         /// HeadPlaceHolder control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace iSchedule.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder HeadPlaceHolder;
-        
+
         /// <summary>
         /// lblAppId control.
         /// </summary>
@@ -29,7 +31,16 @@ namespace iSchedule.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblAppId;
-        
+
+        /// <summary>
+        /// AdminSettings control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AdminSettings;
+
         /// <summary>
         /// AdminUser control.
         /// </summary>
@@ -38,7 +49,7 @@ namespace iSchedule.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl AdminUser;
-        
+
         /// <summary>
         /// UserSettings control.
         /// </summary>
@@ -47,7 +58,7 @@ namespace iSchedule.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl UserSettings;
-        
+
         /// <summary>
         /// UserUpload control.
         /// </summary>
@@ -56,7 +67,7 @@ namespace iSchedule.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl UserUpload;
-        
+
         /// <summary>
         /// UserSchedules control.
         /// </summary>
@@ -65,7 +76,7 @@ namespace iSchedule.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl UserSchedules;
-        
+
         /// <summary>
         /// SignOutLink control.
         /// </summary>
@@ -74,7 +85,7 @@ namespace iSchedule.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton SignOutLink;
-        
+
         /// <summary>
         /// MainContent control.
         /// </summary>
@@ -83,7 +94,7 @@ namespace iSchedule.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
-        
+
         /// <summary>
         /// FootHolder control.
         /// </summary>
@@ -92,7 +103,7 @@ namespace iSchedule.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder FootHolder;
-        
+
         /// <summary>
         /// ScriptManager1 control.
         /// </summary>

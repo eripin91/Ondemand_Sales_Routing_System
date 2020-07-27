@@ -22,7 +22,15 @@ namespace iSchedule.BLL
     {
         //public readonly JavaScriptSerializer js = new JavaScriptSerializer() { MaxJsonLength = int.MaxValue };
 
-
+        //Email Settings
+        public readonly string EmailFrom = @System.Configuration.ConfigurationManager.AppSettings["EmailFrom"];
+        public readonly string EmailSenderName = @System.Configuration.ConfigurationManager.AppSettings["EmailSenderName"];
+        public readonly string EmailSubject = @System.Configuration.ConfigurationManager.AppSettings["EmailSubject"];
+        public readonly string EmailHost = @System.Configuration.ConfigurationManager.AppSettings["EmailHost"];
+        public readonly int EmailPort = Convert.ToInt32(@System.Configuration.ConfigurationManager.AppSettings["EmailPort"]);
+        public readonly string SMTPUserName = @System.Configuration.ConfigurationManager.AppSettings["SMTPUserName"];
+        public readonly string SMTPPassword = @System.Configuration.ConfigurationManager.AppSettings["SMTPPassword"];
+        public readonly string EmailBodyPath = @System.Configuration.ConfigurationManager.AppSettings["EmailBodyPath"];
         //<!--Contest Settings -->
 
         public readonly string Keyword = @System.Configuration.ConfigurationManager.AppSettings["Keyword"];

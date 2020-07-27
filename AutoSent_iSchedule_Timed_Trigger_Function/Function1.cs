@@ -33,7 +33,7 @@ namespace AutoSent_iSchedule_Timed_Trigger_Function
                  .AddJsonFile("local.settings.json", optional: true, reloadOnChange: true)
                  .AddEnvironmentVariables()
                  .Build();
-                string connString = config["ConnString"];
+                string connString = config["DefaultConnection"];
                 int AddLocalTimeZone = Convert.ToInt32(config["AddLocalTimeZone"]);
                 int totalSent = 0;
                 string createdon = ""; //req.Query["createdon"];
