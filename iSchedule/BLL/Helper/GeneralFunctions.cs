@@ -227,7 +227,7 @@ namespace iSchedule.BLL
             value = Regex.Replace(value, @"\s+", " ");       // Convert all whitespaces to a single space.
             return value.Trim();
         }
-        public static string CreateEmailBody(string EmailBodyPath, string email,string pass)
+        public static string CreateEmailBody(string EmailBodyPath, string email="",string pass="")
         {
 
             string body = string.Empty;
@@ -238,8 +238,7 @@ namespace iSchedule.BLL
                 body = reader.ReadToEnd();
             }
 
-            return body.Replace("{email}",email).Replace("{pass}",pass);
-
+            return body.Replace("{email}", email).Replace("{pass}", pass);
         }
         public static void SendEmail(string From, string To, string FromDisplayName, string Subject, string host, int port, string SMTPUserName, string SMTPPassword, string HtmlBody)
         {

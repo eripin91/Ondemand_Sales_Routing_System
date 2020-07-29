@@ -14,12 +14,6 @@ namespace iSchedule.Models
     
     public partial class Settings
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Settings()
-        {
-            this.AspNetUsers = new HashSet<AspNetUsers>();
-        }
-    
         public int SettingsID { get; set; }
         public System.DateTime CreatedOn { get; set; }
         public string AppId { get; set; }
@@ -28,8 +22,6 @@ namespace iSchedule.Models
         public string MessageTemplate { get; set; }
         public bool IsActive { get; set; }
         public Nullable<System.DateTime> LastModified { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AspNetUsers> AspNetUsers { get; set; }
+        public string UserId { get; set; }
     }
 }

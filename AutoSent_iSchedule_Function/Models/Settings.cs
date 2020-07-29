@@ -22,5 +22,6 @@ namespace iSchedule.Models
         public string MessageTemplate { get; set; }
         public bool IsActive { get; set; }
         public Nullable<System.DateTime> LastModified { get; set; }
+        public string UserId { get; set; }
     }
 }

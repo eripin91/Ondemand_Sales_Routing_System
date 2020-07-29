@@ -9,7 +9,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-4">
-                    <h4>Users</h4><br />
+                    <h1>Users</h1><br />
                 </div>
             </div>
             <asp:HiddenField runat="server" ID="hdnEntryID" />

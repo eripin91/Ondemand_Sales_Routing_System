@@ -84,7 +84,12 @@
                             <a href="/UI/Schedules.aspx">
                                 <i class="fa fa-database"></i>&nbsp;Entries
                             </a>
-                        </li>                      
+                        </li>        
+                        <li runat="server" id="ChangePassword">
+                            <a href="/UI/ChangePassword.aspx">
+                                <i class="fa fa-database"></i>&nbsp;Change Password
+                            </a>
+                        </li>
                         <li>
                             <asp:LinkButton ID="SignOutLink" runat="server" OnClick="SignOut_Click" Text="SignOut" />
                         </li>

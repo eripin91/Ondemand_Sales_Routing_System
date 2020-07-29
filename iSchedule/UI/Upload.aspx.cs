@@ -24,11 +24,11 @@ namespace iSchedule.Views
             {
                 
             }
-            //appId = repo.Session_Get("uAppId");
-            //if (string.IsNullOrEmpty(appId))
-            //{
-            //    Response.Redirect("~/UI/ErrorPage.aspx");
-            //}
+            appId = repo.Session_Get("uAppId");
+            if (string.IsNullOrEmpty(appId))
+            {
+                Response.Redirect("~/UI/ErrorPage.aspx");
+            }
         }
 
         protected void Submit_Click(object sender, EventArgs e)

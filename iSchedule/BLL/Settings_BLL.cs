@@ -18,6 +18,14 @@ namespace iSchedule.BLL
                 return db.Settings.ToList();
             }
         }
+
+        public List<Settings> getAllUnUsedSettings()
+        {
+            using (var db = new BaseEntities())
+            {
+                return db.Settings.Where(s=>s.UserId==null).ToList();
+            }
+        }
         public Settings getSettingsBySettingsId(int settingsId)
         {
             using (var db = new BaseEntities())
@@ -30,6 +38,14 @@ namespace iSchedule.BLL
             using (var db = new BaseEntities())
             {
                 return db.Settings.FirstOrDefault(s=>s.AppId==appId);
+            }
+        }
+
+        public Settings getSettingsByUserId(string userId)
+        {
+            using (var db = new BaseEntities())
+            {
+                return db.Settings.FirstOrDefault(s => s.UserId == userId);
             }
         }
 
@@ -84,6 +100,7 @@ namespace iSchedule.BLL
                     setting.Scheduletime = _settings.Scheduletime;
                     setting.MessageTemplate = _settings.MessageTemplate;
                     setting.IsActive = _settings.IsActive;
+                    setting.UserId = _settings.UserId;
 
                     db.Entry(setting).State = System.Data.Entity.EntityState.Modified;
 
@@ -142,5 +159,6 @@ namespace iSchedule.BLL
                 throw;
             }
         }
+
     }
 }

@@ -23,7 +23,9 @@ namespace iSchedule.Views
             {
                 if (User.Identity.IsAuthenticated)
                 {
-                    Response.Redirect("~/UI/Upload.aspx");
+                    if(User.IsInRole("Superusers"))
+                        Response.Redirect("~/UI/AdminUsers.aspx");
+                    else Response.Redirect("~/UI/Settings.aspx");
                 }
                 else
                 {
@@ -47,7 +49,7 @@ namespace iSchedule.Views
             var userStore = new UserStore<IdentityUser>();
             var userManager = new UserManager<IdentityUser>(userStore);
             var user = userManager.Find(UserName.Text, PassWord.Text);
-
+            string returnURL = string.Empty;
 
             if (user != null)
             {
@@ -55,17 +57,19 @@ namespace iSchedule.Views
                     && PassWord.Text == repo.ContestAdminPW)
                 {
                     userManager.AddToRole(user.Id, "Superusers");
+                    returnURL = "~/UI/AdminUsers.aspx";
                 }
                 else
                 {
                     userManager.AddToRole(user.Id, "Users");
+                    returnURL = "~/UI/Settings.aspx";
                 }
                 var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
                 var userIdentity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
 
                 authenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = false }, userIdentity);
                 
-                Response.Redirect("~/UI/Upload.aspx");
+                Response.Redirect(returnURL);
             }
             else
             {

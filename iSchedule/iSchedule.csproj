@@ -157,7 +157,6 @@
     <Content Include="Content\bootstrap.cosmo.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\edm\index.html" />
     <Content Include="Content\General.css" />
     <Content Include="Content\GGDcss.css" />
     <Content Include="Content\GGDcssMobile.css" />
@@ -225,6 +224,7 @@
     <Content Include="UI\ErrorPage.aspx" />
     <Content Include="UI\Schedules.aspx" />
     <Content Include="UI\Login.aspx" />
+    <Content Include="UI\ChangePassword.aspx" />
     <Content Include="UI\Upload.aspx" />
     <Content Include="UI\Settings.aspx" />
     <Content Include="UI\WebForm1.aspx" />
@@ -269,14 +269,14 @@
       <DependentUpon>BaseDB.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\iScheduleModels.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="Models\Schedules.cs">
       <DependentUpon>BaseDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Settings.cs">
       <DependentUpon>BaseDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Mobile.Master.cs">
@@ -329,6 +329,13 @@
     <Compile Include="UI\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="UI\ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UI\Upload.aspx.cs">
       <DependentUpon>Upload.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -371,6 +378,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Content\edm\" />
     <Folder Include="DAL\" />
     <Folder Include="edmx\" />
   </ItemGroup>

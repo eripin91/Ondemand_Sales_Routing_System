@@ -30,7 +30,8 @@ namespace iSchedule.BLL
         public readonly int EmailPort = Convert.ToInt32(@System.Configuration.ConfigurationManager.AppSettings["EmailPort"]);
         public readonly string SMTPUserName = @System.Configuration.ConfigurationManager.AppSettings["SMTPUserName"];
         public readonly string SMTPPassword = @System.Configuration.ConfigurationManager.AppSettings["SMTPPassword"];
-        public readonly string EmailBodyPath = @System.Configuration.ConfigurationManager.AppSettings["EmailBodyPath"];
+        public readonly string SuccessRegisterEmailBodyPath = @System.Configuration.ConfigurationManager.AppSettings["SuccessRegisterEmailBodyPath"];
+        public readonly string ResetPasswordEmailBodyPath = @System.Configuration.ConfigurationManager.AppSettings["ResetPasswordEmailBodyPath"];
         //<!--Contest Settings -->
 
         public readonly string Keyword = @System.Configuration.ConfigurationManager.AppSettings["Keyword"];

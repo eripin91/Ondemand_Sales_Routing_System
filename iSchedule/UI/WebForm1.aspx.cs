@@ -34,6 +34,8 @@ namespace iSchedule.UI
             string urlEncode = HttpUtility.UrlEncode(Request.QueryString["token"]);
             string tk = HttpUtility.UrlEncode(Convert.ToBase64String(et.ToArray()));
 
+            //Unix Timestamp is: 1595989821, GMT / UTC Date Time is: 2020-07-29 02:30:21
+
             lblEncryptString.Text = tk;
         }
     }

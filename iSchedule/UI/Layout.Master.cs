@@ -39,6 +39,7 @@ namespace iSchedule.Views
                 UserSettings.Visible = false;
                 UserUpload.Visible = false;
                 UserSchedules.Visible = false;
+                ChangePassword.Visible = false;
                 lblAppId.Text = repo.Session_Get("uAppId");
                 //AdminManageSettings.Visible = false;
 
@@ -49,6 +50,7 @@ namespace iSchedule.Views
                     UserSettings.Visible = false;
                     UserUpload.Visible = false;
                     UserSchedules.Visible = false;
+                    ChangePassword.Visible = false;
 
                     // AdminManageSettings.Visible = true;
                 }
@@ -57,6 +59,7 @@ namespace iSchedule.Views
                     UserSettings.Visible = true;
                     UserUpload.Visible = true;
                     UserSchedules.Visible = true;
+                    ChangePassword.Visible = true;
                 }
             }
         }

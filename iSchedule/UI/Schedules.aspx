@@ -58,7 +58,8 @@
                     <div class="col-lg-offset-5 col-lg-2">
       
                         <asp:DropDownList CssClass="form-control" ID="ddlValidity" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlValidity_SelectedIndexChanged">
-                            <asp:ListItem Text="Valid" Value="Valid" Selected="True"></asp:ListItem>
+                            <asp:ListItem Text="Select All" Value="Select All" Selected="true"></asp:ListItem>
+                            <asp:ListItem Text="Valid" Value="Valid"></asp:ListItem>
                             <asp:ListItem Text="InValid" Value="Invalid"></asp:ListItem>
                         </asp:DropDownList>
                     </div>
@@ -69,7 +70,8 @@
                     <div class="col-lg-offset-5 col-lg-2">
       
                         <asp:DropDownList CssClass="form-control" ID="ddlIsSent" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlIsSent_SelectedIndexChanged">
-                            <asp:ListItem Text="Sent" Value="True" Selected="True"></asp:ListItem>
+                            <asp:ListItem Text="Select All" Value="Select All" Selected="true"></asp:ListItem>
+                            <asp:ListItem Text="Sent" Value="True"></asp:ListItem>
                             <asp:ListItem Text="Not Sent" Value="False"></asp:ListItem>
                         </asp:DropDownList>
                     </div>

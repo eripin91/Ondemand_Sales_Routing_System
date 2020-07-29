@@ -82,6 +82,7 @@ namespace AutoSent_iSchedule_Function
                             objSettings.MessageTemplate = reader["MessageTemplate"].ToString() ?? reader["MessageTemplate"].ToString();
                             objSettings.IsActive = reader["IsActive"] == DBNull.Value ? false : Convert.ToBoolean(reader["IsActive"]);
                             objSettings.LastModified = reader["LastModified"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["LastModified"].ToString());
+                            objSettings.UserId = reader["UserId"].ToString() ?? reader["AppId"].ToString();
 
                             runningSettings.Add(objSettings);
                         }

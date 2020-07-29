@@ -7,11 +7,22 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace iSchedule.Views {
-    
-    
-    public partial class SettingsView {
-        
+namespace iSchedule.Views
+{
+
+
+    public partial class SettingsView
+    {
+
+        /// <summary>
+        /// settingDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl settingDiv;
+
         /// <summary>
         /// sendTime control.
         /// </summary>
@@ -20,7 +31,7 @@ namespace iSchedule.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox sendTime;
-        
+
         /// <summary>
         /// areaMsgTemplate control.
         /// </summary>
@@ -29,7 +40,7 @@ namespace iSchedule.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox areaMsgTemplate;
-        
+
         /// <summary>
         /// Save control.
         /// </summary>
@@ -38,7 +49,7 @@ namespace iSchedule.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Save;
-        
+
         /// <summary>
         /// lblModal control.
         /// </summary>

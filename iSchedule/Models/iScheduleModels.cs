@@ -78,4 +78,12 @@ namespace iSchedule.Models
         public string FileName { get; set; }
     }
 
+    public class User_ViewModel
+    {
+        public string Id { get; set; }
+        public string Email { get; set; }
+        public string UserName { get; set; }
+        public string AppId { get; set; }
+    }
+
 }

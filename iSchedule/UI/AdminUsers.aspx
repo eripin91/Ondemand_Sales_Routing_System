@@ -10,14 +10,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-4">
-                    <h4>Users</h4><br />
+                    <h1>Users</h1><br />
                 </div>
             </div>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#divAddPopUp">
               Add
             </button>
             <br /><br /><br />
-            <asp:HiddenField runat="server" ID="hdnEntryID" />
+            <asp:HiddenField runat="server" ID="hdnUserID" />
             <div class="row" runat="server" id="LoadedDiv">
                 <div class="col-lg-12" style="overflow: auto;">
                     <div class="table-responsive">
@@ -32,12 +32,19 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>--%>
                                 <asp:BoundField DataField="Email" HeaderText="Email" />
-                                <asp:BoundField DataField="EmailConfirmed" HeaderText="Email Confirmed?" />
                                 <asp:BoundField DataField="UserName" HeaderText="UserName" />
-                                <asp:TemplateField HeaderText="Email">
+                                <asp:BoundField DataField="AppId" HeaderText="App Id" />
+                                <asp:TemplateField HeaderText="Reset Password">
                                     <ItemTemplate>
-                                        <asp:Button runat="server" Text="Email" CssClass="btn btn-default" ID="Email"
-                                            OnClick="Email_Click" OnClientClick="return confirm('Are you sure you want to proceed?');"
+                                        <asp:Button runat="server" Text="Reset" CssClass="btn btn-default" ID="Email"
+                                            OnClick="Reset_Click" OnClientClick="return confirm('Are you sure you want to proceed?');"
+                                             />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Tag to App Id">
+                                    <ItemTemplate>
+                                        <asp:Button runat="server" class="btn btn-default" Text="Tags" ID="Tag"
+                                             OnClick="TagPopUp_Click"
                                              />
                                     </ItemTemplate>
                                 </asp:TemplateField>
@@ -112,9 +119,6 @@
                                 <h4 class="modal-title"></h4>
                             </div>--%>
                 <div class="modal-body">
-                    <p>
-                        <asp:Literal runat="server" ID="StatusMessage" />
-                    </p> 
                     <h5 style="font-weight: bold">Email *</h5>
                     <asp:TextBox runat="server" ID="Email" CssClass="form-control" TextMode="Email"></asp:TextBox>
                     <p>
@@ -124,6 +128,40 @@
                 </div>
                 <div class="modal-footer">   
                     <asp:button CssClass="btn btn-primary" runat="server" Text="Add" onclick="Add_Click"></asp:button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                    <%--   <asp:Button ID="btnCancel" runat="server" Text=""  OnClientClick="" />--%>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="divTagPopUp" class="modal fade" aria-hidden="false" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <%--    <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title"></h4>
+                            </div>--%>
+                <div class="modal-body">
+                    <h5 style="font-weight: bold">Current App Id</h5>
+                    <asp:Literal runat="server" ID="curAppId" Text="N/A"></asp:Literal>
+                    <p>
+                        &nbsp;
+               
+                    </p>
+                    <h5 style="font-weight: bold">New App Id</h5>
+                    <asp:DropDownList CssClass="form-control" ID="ddlAppId" runat="server" DataTextField="AppId" DataValueField="AppId">
+                        <asp:ListItem Text="Select" Value="Select" Selected="true"></asp:ListItem>
+                    </asp:DropDownList>
+                    <p>
+                        &nbsp;
+               
+                    </p>
+                </div>
+                <div class="modal-footer">   
+                    <asp:button CssClass="btn btn-primary" runat="server" Text="Tag" onclick="Tag_Click"></asp:button>
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
                     <%--   <asp:Button ID="btnCancel" runat="server" Text=""  OnClientClick="" />--%>
                 </div>

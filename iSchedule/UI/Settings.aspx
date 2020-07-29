@@ -8,11 +8,12 @@
     <div id="page-content-wrapper">
         <div class="container-fluid">
             <div class="row">
+                <div id="settingDiv" runat="server">
                 <div class="col-lg-8 col-lg-offset-3">
                     <h1>Settings</h1>
                     <div class="row">
                     </div>
-
+                    
                     <div class="row">
                         <div class="col-lg-4">
                             <asp:TextBox ID="sendTime" runat="server" CssClass="form-control timepicker" placeholder="Time to Send"></asp:TextBox>
@@ -47,6 +48,7 @@
                         </div>
                     </div>
                 </div>
+                    </div>
             </div>
 
         </div>
