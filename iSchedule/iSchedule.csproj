@@ -153,10 +153,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-switch.min.css" />
     <Content Include="Content\bootstrap.cosmo.css" />
     <Content Include="Content\bootstrap.cosmo.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\edm\success-register.html" />
     <Content Include="Content\General.css" />
     <Content Include="Content\GGDcss.css" />
     <Content Include="Content\GGDcssMobile.css" />
@@ -170,6 +172,7 @@
     <Content Include="Content\images\ui-icons_ffffff_256x240.png" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\jquery.datetimepicker.css" />
+    <Content Include="Scripts\refs\smsdome-main.js" />
     <Content Include="Content\SelfStyle.css" />
     <Content Include="Content\simple-sidebar.css" />
     <Content Include="Content\Site.css" />
@@ -207,6 +210,7 @@
       <DependentUpon>BaseDB.edmx</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\smsdome-ischedule-sea-web-prd-uat - Web Deploy.pubxml" />
+    <Content Include="Scripts\refs\bootstrap-switch.min.js" />
     <None Include="Scripts\refs\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\refs\jquery-1.10.2.js" />
     <Content Include="Scripts\refs\jquery-1.10.2.min.js" />
@@ -378,7 +382,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Content\edm\" />
     <Folder Include="DAL\" />
     <Folder Include="edmx\" />
   </ItemGroup>

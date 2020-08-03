@@ -333,6 +333,70 @@ namespace iSchedule.Views
             ShowEntries();
         }
 
+        protected void Add_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtEventDate.Text))
+            {
+                lblModal.Text = "Event date is required";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#divPopUp').modal('show');", true);
+                return;
+            }
+            if (string.IsNullOrEmpty(txtMobileNo.Text))
+            {
+                lblModal.Text = "Mobile no is required";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#divPopUp').modal('show');", true);
+                return;
+            }
+
+            string dateString = txtEventDate.Text;
+
+            DateTime EventDate;
+
+            try
+            {
+                if (DateTime.TryParseExact(dateString, repo.DateTimeFormat, CultureInfo.InvariantCulture,
+    DateTimeStyles.None, out EventDate))
+                {
+                    //Console.WriteLine(dateTime);
+                }
+                else
+                {
+                    lblModal.Text = "Please enter a proper date!";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#divPopUp').modal('show');", true);
+                    return;
+
+                }
+            }
+            catch
+            {
+                lblModal.Text = "Please enter a proper date!";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#divPopUp').modal('show');", true);
+                return;
+
+            }
+
+            Schedules newSchedules = new Schedules();
+            newSchedules.AppId = appId;
+            newSchedules.MobileNo = txtMobileNo.Text;
+            newSchedules.EventDate = EventDate;
+            newSchedules.Custom1 = txtCustom1.Text;
+            newSchedules.Custom2 = txtCustom2.Text;
+            newSchedules.Custom3 = txtCustom3.Text;
+
+            var res = repo.InsertSchedule(newSchedules);
+
+            if (res != null)
+            {
+                Response.Redirect(Request.RawUrl);
+            }
+            else
+            {
+                lblModal.Text = "Failed to insert";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#divPopUp').modal('show');", true);
+            }
+
+        }
+
         //protected void ConvertWinner_Click(object sender, EventArgs e)
         //{
         //    //Get the button that raised the event

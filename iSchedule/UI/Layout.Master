@@ -13,6 +13,7 @@
     <meta name="author" content="">
     <!-- Bootstrap Core CSS -->
     <link href='../Content/bootstrap.css' type='text/css' rel='stylesheet'>
+    
     <link href='../Content/simple-sidebar.css' type='text/css' rel='stylesheet'>
     <link href='../Content/jquery-ui.css' type='text/css' rel='stylesheet'>
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:400,700">

@@ -3,6 +3,9 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/UI/Layout.Master" AutoEventWireup="true" CodeBehind="Settings.aspx.cs" Inherits="iSchedule.Views.SettingsView" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadPlaceHolder" runat="server">
+    <link href='../Content/bootstrap-switch.min.css' type='text/css' rel='stylesheet'>
+    <script type="text/javascript" src="../Scripts/refs/bootstrap-switch.min.js"></script>
+    <script type="text/javascript" src="../Scripts/refs/smsdome-main.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div id="page-content-wrapper">
@@ -24,9 +27,16 @@
                     <br />
                     <div class="row">
                         <div class="col-lg-4">
-                            <asp:TextBox ID="areaMsgTemplate" CssClass="form-control" textmode="MultiLine" Columns="60" Rows="8" runat="server"></asp:TextBox>
+                            <asp:TextBox ClientIDMode="Static" onkeydown="return textCounter(areaMsgTemplate, TxtCharCount);" ID="areaMsgTemplate" CssClass="form-control" textmode="MultiLine" Columns="60" Rows="8" runat="server"></asp:TextBox>
                         </div>
                         <div class="col-lg-8">&nbsp;
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <asp:TextBox ReadOnly="true" CssClass="form-control" ID="TxtCharCount" ClientIDMode="Static" Text="Standard SMS: 0 char (0 credit)" runat="server"></asp:TextBox>
+                            
                         </div>
                     </div>
                     <br />

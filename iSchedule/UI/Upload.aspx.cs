@@ -71,7 +71,7 @@ namespace iSchedule.Views
 
 
 
-            var rtn = repo.UploadEntries(new HttpPostedFileWrapper(UploadF.PostedFile));
+            var rtn = repo.UploadEntries(appId,new HttpPostedFileWrapper(UploadF.PostedFile));
 
             lblModal.Text = rtn.message;
             ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#divPopUp').modal('show');", true);

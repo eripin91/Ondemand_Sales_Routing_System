@@ -238,9 +238,7 @@ namespace iSchedule.BLL
                     regex = new Regex(ValidationRegexMobileNo, RegexOptions.IgnoreCase);
                     Match = regex.Match(Schedule.MobileNo.Trim());
 
-                    string appId = Session_Get("uAppId");
-
-                    if (string.IsNullOrEmpty(appId))
+                    if (string.IsNullOrEmpty(Schedule.AppId))
                     {
                         FunctRes.Schedule.IsValid = false;
 
@@ -267,7 +265,7 @@ namespace iSchedule.BLL
                     FunctRes.Schedule.Custom1 = Schedule.Custom1;
                     FunctRes.Schedule.Custom2 = Schedule.Custom2;
                     FunctRes.Schedule.Custom3 = Schedule.Custom3;
-                    FunctRes.Schedule.AppId = appId;
+                    FunctRes.Schedule.AppId = Schedule.AppId;
 
                     //Validation Success
                     //Run Additional logics , duplication etc.
@@ -376,7 +374,7 @@ namespace iSchedule.BLL
         //}
 
 
-        public FunctionResult_Models UploadEntries(HttpPostedFileBase Pfile)
+        public FunctionResult_Models UploadEntries(string AppID, HttpPostedFileBase Pfile)
         {
 
             try
@@ -441,6 +439,7 @@ namespace iSchedule.BLL
                                     //MobileNo,Name,NRIC,ReceiptNo,Amount
 
                                     //CreatedOn = FromLocalToUTC(s),
+                                    AppId = AppID,
                                     CreatedOn = FromLocalToUTC(DateTime.Now),
                                     MobileNo = fields[MobileNoIndex],
                                     EventDate = FromLocalToUTC(s),
@@ -474,12 +473,11 @@ namespace iSchedule.BLL
                             }
                         }
 
-                        string appId = Session_Get("uAppId");
 
-                        if (!string.IsNullOrEmpty(appId))
+                        if (!string.IsNullOrEmpty(AppID))
                         {
                             //purge existing
-                            PurgeEntriesByAppId(appId);
+                            PurgeEntriesByAppId(AppID);
                             for (var i = 0; i < CsvData.Count; i++)
                             {
                                 //string msg = CsvData[i].EventDate.ToString();
@@ -490,6 +488,7 @@ namespace iSchedule.BLL
 
                                 MessageList.Add(InsertSchedule(new Schedules()
                                 {
+                                    AppId = AppID,
                                     CreatedOn = DateTime.Parse(CsvData[i].CreatedOn.ToString("yyyy-MM-dd HH:mm:ss")).ToUniversalTime(),
                                     EventDate = CsvData[i].EventDate,
                                     Custom1 = CsvData[i].Custom1 ?? string.Empty,

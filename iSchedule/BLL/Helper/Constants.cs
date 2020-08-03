@@ -31,7 +31,6 @@ namespace iSchedule.BLL
         public readonly string SMTPUserName = @System.Configuration.ConfigurationManager.AppSettings["SMTPUserName"];
         public readonly string SMTPPassword = @System.Configuration.ConfigurationManager.AppSettings["SMTPPassword"];
         public readonly string SuccessRegisterEmailBodyPath = @System.Configuration.ConfigurationManager.AppSettings["SuccessRegisterEmailBodyPath"];
-        public readonly string ResetPasswordEmailBodyPath = @System.Configuration.ConfigurationManager.AppSettings["ResetPasswordEmailBodyPath"];
         //<!--Contest Settings -->
 
         public readonly string Keyword = @System.Configuration.ConfigurationManager.AppSettings["Keyword"];

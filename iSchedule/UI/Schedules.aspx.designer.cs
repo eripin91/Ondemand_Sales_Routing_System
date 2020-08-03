@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace iSchedule.Views {
-    
-    
-    public partial class Entries {
-        
+namespace iSchedule.Views
+{
+
+
+    public partial class Entries
+    {
+
         /// <summary>
         /// radEvents control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace iSchedule.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButtonList radEvents;
-        
+
         /// <summary>
         /// Purge control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace iSchedule.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Purge;
-        
+
         /// <summary>
         /// ExportToCSV control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace iSchedule.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button ExportToCSV;
-        
+
         /// <summary>
         /// PurgeSel control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace iSchedule.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl PurgeSel;
-        
+
         /// <summary>
         /// ExportDiv control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace iSchedule.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl ExportDiv;
-        
+
         /// <summary>
         /// PurgeDiv control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace iSchedule.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl PurgeDiv;
-        
+
         /// <summary>
         /// IsValidDiv control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace iSchedule.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl IsValidDiv;
-        
+
         /// <summary>
         /// ddlValidity control.
         /// </summary>
@@ -83,7 +85,7 @@ namespace iSchedule.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlValidity;
-        
+
         /// <summary>
         /// Div1 control.
         /// </summary>
@@ -92,7 +94,7 @@ namespace iSchedule.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div1;
-        
+
         /// <summary>
         /// ddlIsSent control.
         /// </summary>
@@ -101,7 +103,7 @@ namespace iSchedule.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlIsSent;
-        
+
         /// <summary>
         /// LoadedDiv control.
         /// </summary>
@@ -110,7 +112,7 @@ namespace iSchedule.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl LoadedDiv;
-        
+
         /// <summary>
         /// EntriesGV control.
         /// </summary>
@@ -119,7 +121,7 @@ namespace iSchedule.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView EntriesGV;
-        
+
         /// <summary>
         /// PagingDiv control.
         /// </summary>
@@ -128,7 +130,7 @@ namespace iSchedule.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl PagingDiv;
-        
+
         /// <summary>
         /// FirstPage control.
         /// </summary>
@@ -137,7 +139,7 @@ namespace iSchedule.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button FirstPage;
-        
+
         /// <summary>
         /// PreviousPage control.
         /// </summary>
@@ -146,7 +148,7 @@ namespace iSchedule.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button PreviousPage;
-        
+
         /// <summary>
         /// CurrentPage control.
         /// </summary>
@@ -155,7 +157,7 @@ namespace iSchedule.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox CurrentPage;
-        
+
         /// <summary>
         /// lblTotalPages control.
         /// </summary>
@@ -164,7 +166,7 @@ namespace iSchedule.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblTotalPages;
-        
+
         /// <summary>
         /// Go control.
         /// </summary>
@@ -173,7 +175,7 @@ namespace iSchedule.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Go;
-        
+
         /// <summary>
         /// NextPage control.
         /// </summary>
@@ -182,7 +184,7 @@ namespace iSchedule.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button NextPage;
-        
+
         /// <summary>
         /// LastPage control.
         /// </summary>
@@ -191,7 +193,7 @@ namespace iSchedule.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button LastPage;
-        
+
         /// <summary>
         /// lblTotal control.
         /// </summary>
@@ -200,7 +202,7 @@ namespace iSchedule.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblTotal;
-        
+
         /// <summary>
         /// lblModal control.
         /// </summary>
@@ -209,7 +211,52 @@ namespace iSchedule.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblModal;
-        
+
+        /// <summary>
+        /// txtEventDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtEventDate;
+
+        /// <summary>
+        /// txtMobileNo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtMobileNo;
+
+        /// <summary>
+        /// txtCustom1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCustom1;
+
+        /// <summary>
+        /// txtCustom2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCustom2;
+
+        /// <summary>
+        /// txtCustom3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCustom3;
+
         /// <summary>
         /// lblModalNoCancel control.
         /// </summary>
@@ -218,7 +265,7 @@ namespace iSchedule.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblModalNoCancel;
-        
+
         /// <summary>
         /// lblConfirm control.
         /// </summary>
@@ -227,7 +274,7 @@ namespace iSchedule.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblConfirm;
-        
+
         /// <summary>
         /// PurgeSelected control.
         /// </summary>
@@ -236,7 +283,7 @@ namespace iSchedule.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button PurgeSelected;
-        
+
         /// <summary>
         /// lblConfirmAll control.
         /// </summary>
@@ -245,7 +292,7 @@ namespace iSchedule.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblConfirmAll;
-        
+
         /// <summary>
         /// PurgeAll control.
         /// </summary>

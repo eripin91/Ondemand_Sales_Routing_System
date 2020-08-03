@@ -9,9 +9,15 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-3">
-                    <h1>View Schedules</h1>
-                    <p>Displays all schedules</p>
+                    <h1>View Entries</h1>
+                    <p>Displays all entries</p>
                     <br />
+
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#divAddPopUp">
+                      Add
+                    </button>
+                    <br /><br /><br />
+
                     <div class="row">
                         <div class="col-lg-8">
                             <asp:RadioButtonList runat="server" ID="radEvents" RepeatDirection="Horizontal" CssClass="marginRadio" AutoPostBack="true" OnSelectedIndexChanged="radEvents_SelectedIndexChanged">
@@ -195,6 +201,51 @@
                         <asp:Label runat="server" ID="lblModal" Text=""> </asp:Label></h3>
                 </div>
                 <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                    <%--   <asp:Button ID="btnCancel" runat="server" Text=""  OnClientClick="" />--%>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="divAddPopUp" class="modal fade" aria-hidden="false" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <%--    <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title"></h4>
+                            </div>--%>
+                <div class="modal-body">
+                    <h5 style="font-weight: bold">Event Date *</h5>
+                        <asp:TextBox ID="txtEventDate" runat="server" CssClass="form-control datetimepicker"></asp:TextBox>
+                    <p>
+                        &nbsp;               
+                    </p>
+                    <h5 style="font-weight: bold">Mobile no *</h5>
+                        <asp:TextBox runat="server" ID="txtMobileNo" CssClass="form-control"></asp:TextBox>
+                    <p>
+                        &nbsp;               
+                    </p>
+                    <h5 style="font-weight: bold">Custom 1</h5>
+                        <asp:TextBox runat="server" ID="txtCustom1" CssClass="form-control"></asp:TextBox>
+                    <p>
+                        &nbsp;               
+                    </p>
+                    <h5 style="font-weight: bold">Custom 2</h5>
+                        <asp:TextBox runat="server" ID="txtCustom2" CssClass="form-control"></asp:TextBox>
+                    <p>
+                        &nbsp;               
+                    </p>
+                    <h5 style="font-weight: bold">Custom 3</h5>
+                        <asp:TextBox runat="server" ID="txtCustom3" CssClass="form-control"></asp:TextBox>
+                    <p>
+                        &nbsp;               
+                    </p>
+                </div>
+                <div class="modal-footer">   
+                    <asp:button CssClass="btn btn-primary" runat="server" Text="Add" onclick="Add_Click"></asp:button>
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
                     <%--   <asp:Button ID="btnCancel" runat="server" Text=""  OnClientClick="" />--%>
                 </div>

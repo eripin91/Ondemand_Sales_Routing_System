@@ -157,13 +157,26 @@ namespace iSchedule.Views
 
             if (user != null)
             {
-                string email = user.Email;
+                var oldSettings = settingsBLL.getSettingsByUserId(id);
+
+                if (oldSettings != null)
+                {
+                    oldSettings.UserId = null;
+                    var oldResult = settingsBLL.update(oldSettings);
+
+                    if (oldResult == null)
+                    {
+                        lblModal.Text = "Failed to update";
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#divPopUp').modal('show');", true);
+                        return;
+                    }
+                }
 
                 userStore.DeleteAsync(user);
-
-                Response.Redirect(Request.RawUrl);
+                
                 UsersGV.DataSource = usersBLL.getAllUsers();
                 UsersGV.DataBind();
+                Response.Redirect(Request.RawUrl);
             }
             else
             {
@@ -193,27 +206,26 @@ namespace iSchedule.Views
         protected void Tag_Click(object sender, EventArgs e)
         {
             var oldSettings = settingsBLL.getSettingsByUserId(hdnUserID.Value);
-            
-            if(oldSettings != null)
-                oldSettings.UserId = null;
 
-            var oldResult = settingsBLL.update(oldSettings);
-
-            if (oldResult != null)
+            if (oldSettings != null)
             {
-                var setting = settingsBLL.getSettingsByAppId(ddlAppId.SelectedValue);
-                setting.UserId = hdnUserID.Value;
+                oldSettings.UserId = null;
+                var oldResult = settingsBLL.update(oldSettings);
 
-                var newSetting = settingsBLL.update(setting);
-                if (newSetting != null)
-                {
-                    Response.Redirect(Request.RawUrl);
-                }
-                else
+                if(oldResult==null)
                 {
                     lblModal.Text = "Failed to update";
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#divPopUp').modal('show');", true);
+                        return;
                 }
+            }
+            var setting = settingsBLL.getSettingsByAppId(ddlAppId.SelectedValue);
+            setting.UserId = hdnUserID.Value;
+
+            var newSetting = settingsBLL.update(setting);
+            if (newSetting != null)
+            {
+                Response.Redirect(Request.RawUrl);
             }
             else
             {
@@ -239,9 +251,10 @@ namespace iSchedule.Views
             {
                 string HtmlBody = GeneralFunctions.CreateEmailBody(repo.SuccessRegisterEmailBodyPath,email,pass);
                 GeneralFunctions.SendEmail(repo.EmailFrom, email, repo.EmailFrom, repo.EmailSubject, repo.EmailHost, repo.EmailPort, repo.SMTPUserName, repo.SMTPPassword, HtmlBody);
-                Response.Redirect(Request.RawUrl);
+                
                 UsersGV.DataSource = usersBLL.getAllUsers();
                 UsersGV.DataBind();
+                Response.Redirect(Request.RawUrl);
             }
             else
             {
