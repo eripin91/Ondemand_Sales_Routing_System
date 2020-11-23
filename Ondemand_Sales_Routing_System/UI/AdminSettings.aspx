@@ -9,9 +9,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-4">
-                    <h1>Users</h1><br />
+                    <h1>Setting</h1><br />
                 </div>
             </div>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#divAddPopUp">
+              Add
+            </button>
+            <br /><br /><br />
             <asp:HiddenField runat="server" ID="hdnEntryID" />
             <div class="row" runat="server" id="LoadedDiv">
                 <div class="col-lg-12" style="overflow: auto;">
@@ -81,6 +85,36 @@
                         <asp:Label runat="server" ID="lblModal" Text=""> </asp:Label></h3>
                 </div>
                 <div class="modal-footer">                    
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                    <%--   <asp:Button ID="btnCancel" runat="server" Text=""  OnClientClick="" />--%>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="divAddPopUp" class="modal fade" aria-hidden="false" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <%--    <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title"></h4>
+                            </div>--%>
+                <div class="modal-body">
+                    <h5 style="font-weight: bold">App Id *</h5>
+                    <asp:TextBox runat="server" ID="txtAppId" CssClass="form-control"></asp:TextBox>
+                    <p>
+                        &nbsp;               
+                    </p>
+                    <h5 style="font-weight: bold">App Secret *</h5>
+                    <asp:TextBox runat="server" ID="txtAppSecret" CssClass="form-control"></asp:TextBox>
+                    <p>
+                        &nbsp;               
+                    </p>
+                </div>
+                <div class="modal-footer">   
+                    <asp:button CssClass="btn btn-primary" runat="server" Text="Add" onclick="Add_Click"></asp:button>
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
                     <%--   <asp:Button ID="btnCancel" runat="server" Text=""  OnClientClick="" />--%>
                 </div>

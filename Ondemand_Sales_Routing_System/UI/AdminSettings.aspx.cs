@@ -9,6 +9,7 @@ using System.Globalization;
 using System.Data;
 using iSchedule.BLL;
 using System.Security.Cryptography;
+using iSchedule.Models;
 
 namespace iSchedule.Views
 {
@@ -50,7 +51,7 @@ namespace iSchedule.Views
         //    Settings setting = settingsBLL.getSettingsBySettingsId(SettingsId);
         //    txtAppId.Text = setting.AppId;
         //    txtAppSecret.Text = setting.AppSecret;
-            
+
         //    hdnEntryID.Value = SettingsId.ToString();
 
         //    ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#divUserPopUp').modal('show');", true);
@@ -79,6 +80,36 @@ namespace iSchedule.Views
         //    }            
         //}
 
+        protected void Add_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtAppId.Text))
+            {
+                lblModal.Text = "App Id is required";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#divPopUp').modal('show');", true);
+                return;
+            }
+            if (string.IsNullOrEmpty(txtAppSecret.Text))
+            {
+                lblModal.Text = "App Secret is required";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#divPopUp').modal('show');", true);
+                return;
+            }
+            Settings newSetting = new Settings();
+            newSetting.AppId = txtAppId.Text;
+            newSetting.AppSecret = txtAppSecret.Text;
+            newSetting.CreatedOn = DateTime.UtcNow;
+
+            var res = settingsBLL.create(newSetting);
+            if (res != null)
+            {
+                Response.Redirect(Request.RawUrl);
+            }
+            else
+            {
+                lblModal.Text = "Failed to insert";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#divPopUp').modal('show');", true);
+            }
+        }
         protected void Delete_Click(object sender, EventArgs e)
         {
             //Get the button that raised the event
